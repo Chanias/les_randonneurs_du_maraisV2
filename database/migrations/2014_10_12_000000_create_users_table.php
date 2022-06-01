@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('date_de_naissance');
-            $table->string('num_telephone_fixe')->nullable();
-            $table->string('num_telephone_portable')->nullable();
+            $table->string('num_telephone_fixe');
+            $table->string('num_telephone_portable');
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

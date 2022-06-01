@@ -18,11 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        //'identifiant',
+        //'identifiant', 
         'nom',
         'prenom',
         'date_de_naissance',
-        'adresse',
+        //'adresse',
+        //'code_postal',
+        //'ville',
         'num_telephone_fixe',
         'num_telephone_portable',
         'email',
@@ -53,7 +55,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
     public function isAdmin(){
-        if($this->role_id==2){ // return $this->role=='admin'
+        if($this->role_id==6){ // return $this->role=='admin'
             return true;
         }}
 }

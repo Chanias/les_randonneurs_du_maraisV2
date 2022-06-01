@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Inscription') }}</div>
 
 
                     <!--FORMULAIRE INSCRIPTOION-->
@@ -74,14 +74,46 @@
                                 </div>
                             </div>
 
+                            <!--CODE POSTAL-->
+                            <div class="row mb-3">
+                                <label for="code_postal"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Code postal') }}</label>
+                                <div class="col-md-6">
+                                    <input id="code_postal" type="text"
+                                        class="form-control @error('code_postal') is-invalid @enderror" name="code_postal"
+                                        value="{{ old('code_postal') }}" required autocomplete="code_postal" autofocus>
+                                    @error('code_postal')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!--VILLE-->
+                            <div class="row mb-3">
+                                <label for="ville"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Ville') }}</label>
+                                <div class="col-md-6">
+                                    <input id="ville" type="text"
+                                        class="form-control @error('ville') is-invalid @enderror" name="ville"
+                                        value="{{ old('ville') }}" required autocomplete="ville" autofocus>
+                                    @error('ville')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <!--NUMERO DE TELEPHONE FIXE-->
                             <div class="row mb-3">
                                 <label for="num_telephone_fixe"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Numéro de téléphone fixe') }}</label>
                                 <div class="col-md-6">
                                     <input id="num_telephone_fixe" type="text" placeholder="00 00 00 00 00"
-                                        class="form-control @error('num_telephone_fixe') is-invalid @enderror" name="num_telephone_fixe
-                                        value="{{ old('num_telephone_fixe') }}" autofocus>
+                                        class="form-control @error('num_telephone_fixe') is-invalid @enderror" name="num_telephone_fixe"
+                                            value=" {{ old('num_telephone_fixe') }}" autocomplete="num_telephone_fixe" autofocus>
                                     @error('num_telephone_fixe')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -96,8 +128,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Numéro de téléphone portable') }}</label>
                                 <div class="col-md-6">
                                     <input id="num_telephone_portable" type="text" placeholder="00 00 00 00 00"
-                                        class="form-control @error('num_telephone_portable') is-invalid @enderror" name="adrenum_telephone_portablesse"
-                                        value="{{ old('num_telephone_portable') }}" autofocus>
+                                        class="form-control @error('num_telephone_portable') is-invalid @enderror"
+                                        name="num_telephone_portable" value="{{ old('num_telephone_portable') }}"
+                                        autocomplete="num_telephone_portable"autofocus>
                                     @error('num_telephone_portable')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -112,8 +145,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Adresse mail') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" placeholder="exemple@exemple.fr" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" placeholder="exemple@exemple.fr"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -156,7 +190,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Engeristrer') }}
+                                        {{ __('Enregistrer') }}
                                     </button>
                                 </div>
                             </div>
