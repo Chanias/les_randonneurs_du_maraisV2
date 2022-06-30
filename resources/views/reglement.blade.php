@@ -61,24 +61,7 @@
     </section>
 
 
-    <!--CONTACT START-->
-    <section id="contact">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Contact</h2>
-                </div>
-            </div>
-            <div class="row" id="image_et_texte">
-                <div class="col-md-6">
-                    <p>ADRESSE : 25 rue de l'Eglise 85770 Le Gué de Velluire </p>
-                    <p>TEL : 02 51 52 54 93</p>
-                    <p>MAIL : bonneau.marcelle@gmail.com</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--CONTACT END-->
+    
 
     <!--FOOTER START-->
     <footer>

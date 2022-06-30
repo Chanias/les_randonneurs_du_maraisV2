@@ -35,7 +35,22 @@ class AdresseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'adresse'=>'required',
+            'code_postal'=>'required',
+            'ville'=>'required',
+        ]);
+        // sauvegarde dans la base de données les nouvelles campagnes et je stock la variable
+        $campagne = Campagne::create($request->all()); //$campagne est une instance de la table Campagne
+
+        //insertion des articles associés via un eager loading dans campagne_article
+        $articles = Article::all();
+        for ($i = 1; $i < count($articles); $i++) {
+            if (isset($request['article' . $i])) {
+                $campagne->articles()->attach([$i]); // attach = insert into ...
+            }
+        }
+        return redirect()->route('admin.index')->with('message', 'Campagne a été créée avec succès');
     }
 
     /**

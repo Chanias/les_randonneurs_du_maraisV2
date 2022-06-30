@@ -100,7 +100,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-8 offset-2">
+                <div class="col-md-8 offset-2 text-center">
                     <h4 class="text-center p-4">Modifier mon adresse</h4>
 
                     <form class="col-12 mx-auto p-5 border " action="{{ route('compte.updatePassword') }}" method="POST">
@@ -132,5 +132,16 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2 text-center">
+            <h4>supprimer mon compte</h4>
+                      
+           
+            </div>
+        </div>
+
     </div>
 @endsection

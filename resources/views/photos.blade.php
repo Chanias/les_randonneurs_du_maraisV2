@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 home-title">
-                    <h1>Les randonneurs du marais sud vendée</h1>
+                    <h1>Nos photos souvenirs</h1>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                     <img src="{{ asset('images/petites/moutons_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
-            <a href="{{ route('contact.index') }} class=" btn-1">En savoir plus</a>
+            <button type="button" class="btn-1">En savoir polus<a href="#"></a></button>
         </div>
         <div class="container">
             <div class="row">
@@ -76,30 +76,12 @@
                     <img src="{{ asset('images/petites/footer_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
-            <a href="{{ route('contact.index') }} class=" btn-1">En savoir plus</a>
+            <button type="button" class="btn-1">En savoir polus<a href="#"></a></button>
         </div>
     </section>
 
     <!--GALLERY END-->
     <!--FOOTER START-->
-    <!--CONTACT START-->
-    <section id="contact">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Contact</h2>
-                </div>
-            </div>
-            <div class="row" id="image_et_texte">
-                <div class="col-md-6">
-                    <p>ADRESSE : 25 rue de l'Eglise 85770 Le Gué de Velluire </p>
-                    <p>TEL : 02 51 52 54 93</p>
-                    <p>MAIL : bonneau.marcelle@gmail.com</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--CONTACT END-->
     <footer>
         <div class="container-fluid">
 

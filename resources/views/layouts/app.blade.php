@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-white shadow-sm">
             <img src="{{ asset('images/logo_fond_vert.jpeg') }}" alt="Logo" style="width:100px;"
                 class="rounded-pill">
             <div class="container">
@@ -40,23 +40,20 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                            <a class="nav-link" aria-current="page" href="/home">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('activites.index') }}">Activité</a>
+                            <a class="nav-link" href="{{ route('activites.index') }}">Randonnées</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('photos.index') }}">Photos</a>
+                            <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('a_propos.index') }}">A propos</a>
+                            <a class="nav-link" href="{{ route('admin.index') }}">ADMINISTRATEUR</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.index') }}">Interface admin</a>
-                        </li> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -65,13 +62,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
                                 </li>
                             @endif
                         @else
@@ -104,6 +101,26 @@
                     class="rounded-pill">
             </a>
         </nav>
+        <div class="container w-50 text-center p-3">
+
+            @if (session()->has('message'))
+                <p class="alert alert-success">{{ session()->get('message') }}</p>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+        </div>
+
+
+
 
         <main class="py-4">
             @yield('content')

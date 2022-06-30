@@ -6,7 +6,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Inscription') }}</div>
-
+                    <div class=" col-md-8 offset-2 text-center">
+                        <p>Pour nous rejoindre, vous devrez lire et valider le règlement intérieur et renseigner le
+                            formulaire ci-joint. Par la suite, vous serez recontacté par le bureau de l'association qui
+                            confirmera votre inscription et vous demandera de préparer un certificat médical ainsi qu'un
+                            montant chèque de 30€. <!--METTRE UN ESPACE --><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></p>
+                            
+                            <a href="{{ route('reglement.index') }}" class="btn-1" target="_blank">Réglement intérieur</a>
+                    </div>
+<!--VOIR POUR L ENVOI DE MAIL VIA FORMULAIRE ET METTRE UNE ALERTE SUR LE COMPTE ADMIN POUR LES NOUVELLES ADHESIONS POUR RECONTACTER LA PERSONNE-->
 
                     <!--FORMULAIRE INSCRIPTOION-->
                     <div class="card-body">
@@ -92,12 +100,10 @@
 
                             <!--VILLE-->
                             <div class="row mb-3">
-                                <label for="ville"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Ville') }}</label>
+                                <label for="ville" class="col-md-4 col-form-label text-md-end">{{ __('Ville') }}</label>
                                 <div class="col-md-6">
-                                    <input id="ville" type="text"
-                                        class="form-control @error('ville') is-invalid @enderror" name="ville"
-                                        value="{{ old('ville') }}" required autocomplete="ville" autofocus>
+                                    <input id="ville" type="text" class="form-control @error('ville') is-invalid @enderror"
+                                        name="ville" value="{{ old('ville') }}" required autocomplete="ville" autofocus>
                                     @error('ville')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -112,8 +118,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Numéro de téléphone fixe') }}</label>
                                 <div class="col-md-6">
                                     <input id="num_telephone_fixe" type="text" placeholder="00 00 00 00 00"
-                                        class="form-control @error('num_telephone_fixe') is-invalid @enderror" name="num_telephone_fixe"
-                                            value=" {{ old('num_telephone_fixe') }}" autocomplete="num_telephone_fixe" autofocus>
+                                        class="form-control @error('num_telephone_fixe') is-invalid @enderror"
+                                        name="num_telephone_fixe" value=" {{ old('num_telephone_fixe') }}"
+                                        autocomplete="num_telephone_fixe" autofocus>
                                     @error('num_telephone_fixe')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -130,7 +137,7 @@
                                     <input id="num_telephone_portable" type="text" placeholder="00 00 00 00 00"
                                         class="form-control @error('num_telephone_portable') is-invalid @enderror"
                                         name="num_telephone_portable" value="{{ old('num_telephone_portable') }}"
-                                        autocomplete="num_telephone_portable"autofocus>
+                                        autocomplete="num_telephone_portable" autofocus>
                                     @error('num_telephone_portable')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

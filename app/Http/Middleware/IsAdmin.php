@@ -21,5 +21,6 @@ class IsAdmin
         }
 
         return redirect()->route('login')->with('message', 'Vous n avez pas la permission d accéder à cette page !! Veuillez contacter la personne qui gére le site.');
+        //abort erreur 403
     }
 }
