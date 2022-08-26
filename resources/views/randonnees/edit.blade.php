@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    MOFIFICATION DES RANDONNEES
+    MOFIFICATION D'UNE RANDONNEE
 @endsection
 
 @section('content')
-
-<div class="Container">
+<div class="container">
     <div class="row text-center md-6 mx-auto">
         <div class="col-md-12">
             <h2>Modifier une randonnée</h2>
@@ -20,7 +19,7 @@
             <div class="row text-center">
                 <div class="field">
                     <div class="col-md-6 mx-auto">
-                        <label for="label" class="mt-3 fs-4">Nouvelle date :</label>
+                        <label for="label" class="mt-3 fs-4">Nouvelle date de randonnées :</label>
                         <div class="control">
                             <input class="input" id="content" type="text" name="date_rando"
                                 value="{{ $randonnee->date_rando }}">
@@ -30,11 +29,10 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="row text-center">
+
                 <div class="field">
                     <div class="col-md-6 mx-auto">
-                        <label for="label" class="mt-3 fs-4">Nouvel horaire :</label>
+                        <label for="label" class="mt-3 fs-4">Nouvelle heure de départ :</label>
                         <div class="control">
                             <input class="input" id="content" type="text" name="heure_depart"
                                 value="{{ $randonnee->heure_depart }}">
@@ -44,12 +42,9 @@
                         @endif
                     </div>
                 </div>
-            </div>
-
-            <div class="row text-center">
                 <div class="field">
                     <div class="col-md-6 mx-auto">
-                        <label for="label" class="mt-3 fs-4">Nouveau point de départ :</label>
+                        <label for="label" class="mt-3 fs-4">Nouveau lieu de départ :</label>
                         <div class="control">
                             <input class="input" id="content" type="text" name="depart_rando"
                                 value="{{ $randonnee->depart_rando }}">
@@ -59,12 +54,9 @@
                         @endif
                     </div>
                 </div>
-            </div>
-
-            <div class="row text-center">
                 <div class="field">
                     <div class="col-md-6 mx-auto">
-                        <label for="label" class="mt-3 fs-4">Circuit :</label>
+                        <label for="label" class="mt-3 fs-4">Nouveau circuit :</label>
                         <div class="control">
                             <input class="input" id="content" type="text" name="circuit"
                                 value="{{ $randonnee->circuit }}">
@@ -74,12 +66,9 @@
                         @endif
                     </div>
                 </div>
-            </div>
-
-            <div class="row text-center">
                 <div class="field">
                     <div class="col-md-6 mx-auto">
-                        <label for="label" class="mt-3 fs-4">Nombre de kilomètres :</label>
+                        <label for="label" class="mt-3 fs-4">Nouveau nombres de kilomètres :</label>
                         <div class="control">
                             <input class="input" id="content" type="text" name="kilometres"
                                 value="{{ $randonnee->kilometres }}">
@@ -89,8 +78,6 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="row text-center">
                 <div class="field">
                     <div class="col-md-6 mx-auto">
                         <label for="label" class="mt-3 fs-4">Nouveaux animateurs :</label>
@@ -108,12 +95,17 @@
             <div class="field text-center">
                 <div class="control">
                     <button type="submit" class="btn btn-success">
-                        {{ __('Modifier randonnée') }}
+                        {{ __('Modifier la randonnee') }}
                     </button>
                 </div>
             </div>
-        </form>
-     @endif
+            
+      </form>
+      @endif 
 </div>
+
+
+
+
 
 @endsection

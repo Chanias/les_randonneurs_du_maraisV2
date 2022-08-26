@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adresse;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -23,6 +24,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    
 
     /**
      * Where to redirect users after registration.
@@ -68,20 +70,24 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \App\Models\User
+     * @return \App\Models\Adresse
      */
     protected function create(array $data)
     {
         return User::create([
             'nom' => $data['nom'],
             'prenom' => $data['prenom'],
-            'adresse' => $data['adresse'],
-            'code_postal' => $data['code_postal'],
-            'ville' => $data['ville'],
             'date_de_naissance' => $data['date_de_naissance'],
             'num_telephone_fixe' => $data['num_telephone_fixe'],
             'num_telephone_portable' => $data['num_telephone_portable'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+        ]);
+
+        return Adresse::create([
+            'adresse' => $data['adresse'],
+            'code_postal' => $data['code_postal'],
+            'ville' => $data['ville'],
         ]);
     }
 }

@@ -14,46 +14,34 @@
             </div>
         </div>
     </section>
-    <!--FORMULAIRE DE CONTACT-->
-    <section id="contact">
-        <div class="container">
+    <!------------------------------------------ADRESSE------------------------------------------------>
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
-                <p>Pour nous rejoindre veuillez remplir ce document après avoir pris connaissance du règlement intérieur
-                </p>
-                <a href="{{ route('reglement.index') }}" class="btn-1" target="_blank">Réglement intérieur</a>
-            </div>
-            <div class="col-md-12" id="intro">
-                <p>Les randonnées ont lieu les mercredis et samedis matin les mois de mai, juin et septembre. Les autres ont
-                    lieu les mercredis et samedis après-midi. (Pas de randonnées en juillet et août.)</p>
+                <p class="text-center">Vous pouvez nous contacter à l'adresse suivante :</p>
             </div>
         </div>
-        
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card" id="adresse_contact">
+                    <div class="card-body">
+                      <h5 class="card-title">Nous retrouver</h5>
+                      <p class="card-text">25 rue de l'Église</p>
+                      <p class="card-text">85770 Le Gué de Velluire</p>
+                      <p class="card-text">Téléphone : 02.51.52.54.93</p>
+                      <p class="card-text">bonneau.marcelle@gmail.com</p>
+                      
+                    </div>
+                  </div>
+            </div>
       
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Une fois ce formulaire rempli, veuillez cliquer sur le bouton envoyer</p>
-                </div>
+            <div class="col-md-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2752.8331586860163!2d-0.9212984999999999!3d46.3726981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4806c7c5e65bc56b%3A0xab10422fe860332!2s25%20Rue%20de%20l&#39;%C3%89glise%2C%2085770%20Le%20Gu%C3%A9-de-Velluire!5e0!3m2!1sfr!2sfr!4v1658906243057!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <span>* non obligatoire</span>
         </div>
-        <!--FOOTER START-->
-        <footer>
-            <div class="container-fluid">
-
-                <img src="{{ asset('images/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;" class="rounded-pill">
-            </div>
-
-            <div class="details_2">
-                <button type="button" class="btn-1">Copyright<a href="#"></a></button>
-                <button type="button" class="btn-1">Mentions Légales<a href="#"></a></button>
-                <button type="button" class="btn-1">Politique de confidentialité<a href="#"></a></button>
-            </div>
-
-            <div class="copyright">
-                <p>Les Randonneurs du Marais Sud Vendée - 2021.</p>
-            </div>
-            </div>
-        </footer>
-        <!--FOOTER END-->
+              
+        
+    </div>
     @endsection

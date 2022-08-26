@@ -27,18 +27,18 @@ Route::put('compte/updatePassword',  [App\Http\Controllers\UserController::class
 Route::delete('user/destroy', [App\Http\Controllers\UserController::class, 'destroy'] )->name('user.destroy');
 
 //-----------------------------ADRESSES-------------------------------
-Route::resource('adresses', App\Http\Controllers\AdresseController::class);
+Route::resource('adresse', App\Http\Controllers\AdresseController::class);
 
 //-----------------------------ACTIVITES-------------------------------
 Route::resource('activites', App\Http\Controllers\ActiviteController::class);
 //-----------------------------RANDONNEES-------------------------------
-Route::resource('randonnees', App\Http\Controllers\ActiviteController::class);
+Route::resource('randonnee', App\Http\Controllers\RandonneeController::class);
 
 //-----------------------------PHOTOS-------------------------------
 Route::resource('photos', App\Http\Controllers\PhotoController::class);
 
-//-----------------------------A PROPOS-------------------------------
-Route::resource('a_propos', App\Http\Controllers\A_ProposController::class);
+//-----------------------------DOCUMENTS-------------------------------
+Route::resource('document', App\Http\Controllers\DocumentController::class);
 
 //-----------------------------CONTACT-------------------------------
 Route::resource('contact', App\Http\Controllers\ContactController::class);
@@ -48,3 +48,9 @@ Route::resource('reglement', App\Http\Controllers\ReglementController::class);
 
 //-----------------------------ADMIN-------------------------------
 Route::get('admin/index',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+
+
+
+
+
+

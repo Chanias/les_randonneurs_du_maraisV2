@@ -24,28 +24,28 @@
             </div>
             <div class="row">
                 <div class="col-md-4 mt-3 col-lg-4 justify-content-center">
-                    <img src="{{ asset('images/petites/sentier_petite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/petites/sentier_petite.jpeg') }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/plage2_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/plage2_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/cheveaux_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/cheveaux_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/bois_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/bois_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/foussais_payre_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/foussais_payre_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/moutons_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/moutons_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
-            <button type="button" class="btn-1">En savoir polus<a href="#"></a></button>
+            <button type="button" class="btn-1">En savoir polus<a href="{{ route('register') }}"></a></button>
         </div>
         <div class="container">
             <div class="row">
@@ -55,49 +55,31 @@
             </div>
             <div class="row">
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/port_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/port_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/plage_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/plage_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/etang_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/etang_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/foret_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/foret_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/20200625_134148_petite.jpeg') }}" class="d-block w-100"
+                    <img src="{{ asset('images/photos/petites/20200625_134148_petite.jpeg') }}" class="d-block w-100"
                         alt="image">
                 </div>
                 <div class="col-md-4 mt-3 col-lg-4">
-                    <img src="{{ asset('images/petites/footer_petite.jpeg') }}" class="d-block w-100" alt="image">
+                    <img src="{{ asset('images/photos/petites/footer_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
-            <button type="button" class="btn-1">En savoir polus<a href="#"></a></button>
+            <button type="button" class="btn-1">En savoir polus<a href="{{ route('register') }}"></a></button>
         </div>
     </section>
 
     <!--GALLERY END-->
-    <!--FOOTER START-->
-    <footer>
-        <div class="container-fluid">
-
-            <img src="{{ asset('images/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;" class="rounded-pill">
-        </div>
-
-        <div class="details_2">
-            <button type="button" class="btn-1">Copyright<a href="#"></a></button>
-            <button type="button" class="btn-1">Mentions Légales<a href="#"></a></button>
-            <button type="button" class="btn-1">Politique de confidentialité<a href="#"></a></button>
-        </div>
-
-        <div class="copyright">
-            <p>Les Randonneurs du Marais Sud Vendée - 2021.</p>
-        </div>
-        </div>
-    </footer>
-    <!--FOOTER END-->
+   
 @endsection

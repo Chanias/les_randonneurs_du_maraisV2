@@ -31,7 +31,7 @@
                             <input type="hidden" name="num_telephone_fixe" value="{{ $user->num_telephone_fixe }}"
                                 id="num_telephone_fixe">
                             <div class="form-group">
-                                <label for="num_telephone_fixe">num_telephone_fixe</label>
+                                <label for="num_telephone_fixe">Numéro de téléphone fixe</label>
                                 <input type="text" class="form-control" name="num_telephone_fixe"
                                     value="{{ $user->num_telephone_fixe }}" id="num_telephone_fixe">
                             </div>
@@ -39,7 +39,7 @@
                             <input type="hidden" name="num_telephone_portable" value="{{ $user->num_telephone_portable }}"
                                 id="num_telephone_portable">
                             <div class="form-group">
-                                <label for="num_telephone_portable">num_telephone_portable</label>
+                                <label for="num_telephone_portable">Numéro de téléphone portable</label>
                                 <input type="text" class="form-control" name="num_telephone_portable"
                                     value="{{ $user->num_telephone_portable }}" id="num_telephone_portable">
                             </div>
@@ -99,33 +99,31 @@
                 </div>
 
             </div>
+            <!----------------------------------------MODIFIER MON ADRESSE-------------------------------------------------------->
+
             <div class="row">
                 <div class="col-md-8 offset-2 text-center">
                     <h4 class="text-center p-4">Modifier mon adresse</h4>
-
-                    <form class="col-12 mx-auto p-5 border " action="{{ route('compte.updatePassword') }}" method="POST">
-
+                    <form class="col-12 mx-auto p-5 border " action="{{ route('adresse.update', $user->adresse) }}"
+                        method="POST">
                         @csrf
                         @method('PUT')
-
-                        <input type="hidden" name="adresse" value="{{ $user->adresse }}" id="adresse">
                         <div class="form-group">
                             <label for="adresse">Adresse</label>
-                            <input type="text" class="form-control" name="adresse" value="{{ $user->adresse }}"
+                            <input type="adresse" class="form-control" name="adresse" value="{{ $user->adresse->adresse }}"
                                 id="adresse">
                         </div>
 
-                        <input type="hidden" name="code_postal" value="{{ $user->code_postal }}" id="code_postal">
                         <div class="form-group">
                             <label for="code_postal">Code postal</label>
-                            <input type="text" class="form-control" name="code_postal" value="{{ $user->adresse }}"
-                                id="code_postal">
+                            <input type="text" class="form-control" name="code_postal"
+                                value="{{ $user->adresse->code_postal }}" id="code_postal">
                         </div>
 
-                        <input type="hidden" name="ville" value="{{ $user->ville }}" id="ville">
                         <div class="form-group">
                             <label for="ville">Ville</label>
-                            <input type="text" class="form-control" name="ville" value="{{ $user->ville }}" id="ville">
+                            <input type="text" class="form-control" name="ville"
+                                value="{{ $user->adresse->ville }}" id="ville">
                         </div>
                         <button type="submit" class="btn btn-primary">Modifier</button>
                     </form>
@@ -137,9 +135,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-2 text-center">
-            <h4>supprimer mon compte</h4>
-                      
-           
+                <h3>SUPPRIMER MON COMPTE</h3>
+                <!--SUPPRIMER L'UTILISATEUR-->
+                <form method="POST" action="{{ route('user.destroy', $user) }}">
+                    <!-- CSRF token -->
+                    @csrf
+                    @method('DELETE')
+                    <td>
+                        <input type="submit" class="btn btn-danger" value="Supprimer mon compte">
+                    </td>
+                </form>
+
+
             </div>
         </div>
 

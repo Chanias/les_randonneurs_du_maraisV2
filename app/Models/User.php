@@ -50,7 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function adresse()
+    {
+        return $this->hasOne(Adresse::class);
+    }
     public function role(){
         return $this->belongsTo(Role::class);
     }

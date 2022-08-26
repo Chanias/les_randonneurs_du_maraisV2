@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use Auth;
-use App\Models\Adresse;
+use App\Models\Document;
 
-
-class AdresseController extends Controller
+class DocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,12 +37,23 @@ class AdresseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'adresse' => 'required|min:3|max:50',
-            'code_postal' => 'required|min:5|max:5',
-            'ville' => 'required|min:3|max:50',
+            'nom_document' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
         ]);
-        Adresse::create($request->all());
-        return redirect()->back()->with('message', 'Adresse enregistrée !');
+        // on donne un nom à l'image : timestamp en temps unix + extension
+        $imageName = time() . '.' . $request->image->extension();
+
+        //on déplace l'image dans public/images et on instancie un nouveau document
+        $request->image->move(public_path('images/photos'), $imageName);
+        $document = new Document;
+
+        $this->authorize('create', $document);
+
+        $document->image = $imageName;
+        $document->save();
+
+        return redirect()->route('admin.index')->with('message', 'Le document a bien été ajouté...');
     }
 
     /**
@@ -75,21 +85,9 @@ class AdresseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Adresse $adresse)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'adresse' => 'required|min:3|max:50',
-            'code_postal' => 'required|min:3|max:50',
-            'ville' => 'required|min:3|max:50',
-        ]);
-
-        $adresse->update([
-            'adresse' => $request->input('adresse'),
-            'code_postal' => $request->input('code_postal'),
-            'ville' => $request->input('ville'),
-        ]);
-
-        return redirect()->back()->with('message', 'L\'adresse a bien été modifiée');
+        //
     }
 
     /**
@@ -98,9 +96,9 @@ class AdresseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($adresse)
+    public function destroy(Document $document)
     {
-        $adresse->delete();
-        return redirect()->back()->with('message', 'L\'adresse a bien été supprimée');
+        $document->delete();
+        return redirect()->route('admin.index')->with('message', 'Le document a bien été supprimé...');
     }
 }

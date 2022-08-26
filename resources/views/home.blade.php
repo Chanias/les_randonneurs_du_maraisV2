@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="btn">
+   </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12 home-title">
@@ -27,13 +29,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
-                    <img src="{{ asset('images/bois_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/bois_reduite.jpeg') }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="{{ asset('images/marais_salant_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/marais_salant_reduite.jpeg') }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="{{ asset('images/port_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/port_reduite.jpeg') }}" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -102,21 +104,21 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="sorties-details">
-                                    <img src="{{ asset('images/petites/plage2_petite.jpeg') }}" class="d-block w-100"
+                                    <img src="{{ asset('images/photos/petites/plage2_petite.jpeg') }}" class="d-block w-100"
                                         alt="...">
                                     <h4>Bord de mer</h4>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="sorties-details">
-                                    <img src="{{ asset('images/petites/foret_petite.jpeg') }}"
+                                    <img src="{{ asset('images/photos/petites/foret_petite.jpeg') }}"
                                         class="d-block w-100" alt="...">
                                     <h4>Forêt</h4>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="sorties-details">
-                                    <img src="{{ asset('images/petites/cheveaux_petite.jpeg') }}" class="d-block w-100"
+                                    <img src="{{ asset('images/photos/petites/cheveaux_petite.jpeg') }}" class="d-block w-100"
                                         alt="...">
                                     <h4>Découverte nature</h4>
                                 </div>
@@ -125,17 +127,14 @@
                     </div>
                     <div class="container" id="plus">
                         <div class="row">
-                            <div class="col-md-4">
-                                <i class="fas fa-users mb-4"></i>
-                                <h2 class="fs-4">Public concerné : tous public</h2>
+                            <div class="col-md-4">                            
+                                <h2 class="fs-4"><i class="fas fa-users mb-4"></i> Public concerné : tous public</h2>
                             </div>
-                            <div class="col-md-4">
-                                <i class="fas fa-hiking mb-4"></i>
-                                <h2 class="fs-4">Jours de sorties : mercredi et samedi </h2>
+                            <div class="col-md-4">                              
+                                <h2 class="fs-4"><i class="fas fa-hiking mb-4"></i> Jours de sorties : mercredi et samedi </h2>
                             </div>
-                            <div class="col-md-4">
-                                <i class="fas fa-euro-sign mb-4"></i>
-                                <h2 class="fs-4">Coût individuel de la cotisation : 30 €</h2>
+                            <div class="col-md-4">                             
+                                <h2 class="fs-4"><i class="fas fa-euro-sign mb-4"></i> Coût individuel de la cotisation : 30 €</h2>
                             </div>
                         </div>
                     </div>
@@ -165,7 +164,7 @@
                     </div>
                     <div class="carousel-inner" id="pop">
                         <div class="carousel-item active">
-                            <img src="{{ asset('images/bloc_pierre_reduite.jpeg') }}" class="d-block w-100"
+                            <img src="{{ asset('images/photos/bloc_pierre_reduite.jpeg') }}" class="d-block w-100"
                                 alt="...">
                             <div class="carousel-caption w-25 h-75">
                             </div>
@@ -175,7 +174,7 @@
                         </div>
 
                         <div class="carousel-item">
-                            <img src="{{ asset('images/plage_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/photos/plage_reduite.jpeg') }}" class="d-block w-100" alt="...">
                             <div class="carousel-caption w-25 h-75">
                             </div>
                         </div>
@@ -183,7 +182,7 @@
                             <span>La première marche est gratuite, venez en profiter !!!</span>
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('images/moutons_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/photos/moutons_reduite.jpeg') }}" class="d-block w-100" alt="...">
                             <div class="carousel-caption w-25 h-75">
                             </div>
                         </div>
@@ -205,6 +204,10 @@
             </div>
             <!--CAROUSEL 2 END-->
 
+
+            @php
+//   SI LE USER EST CONNECTE ENLEVER LA PARTIE NOUS REJOINDRE SINON QUAND PAS CONNECTE LA LAISSER
+@endphp
             <!--NOUS REJOINDRE START-->
             <section id="nous_rejoindre">
                 <div class="container-fluid">
@@ -219,25 +222,6 @@
 
                 </div>
             </section>
-            <!--CONTACT END-->
-
-            <!--FOOTER START-->
-            <footer>
-                <div class="container-fluid">
-
-                    <img src="{{ asset('images/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;"
-                        class="rounded-pill">
-                </div>
-
-                <div class="details_2">
-                    <button type="button" class="btn-1">Copyright<a href="#"></a></button>
-                    <button type="button" class="btn-1">Mentions Légales<a href="#"></a></button>
-                    <button type="button" class="btn-1">Politique de confidentialité<a href="#"></a></button>
-                </div>
-
-                <div class="copyright">
-                    <p>Les Randonneurs du Marais Sud Vendée - 2021.</p>
-                </div>
-            </footer>
-            <!--FOOTER END-->
+            <!--NOUS REJOINDRE END-->
+          
         @endsection

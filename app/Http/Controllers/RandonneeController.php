@@ -13,7 +13,7 @@ use App\Models\Message;
 use App\Models\Randonnee;
 
 
-class UserController extends Controller
+class RandonneeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.randonnees', compact('randonnee'));
     }
     
     /**
@@ -51,7 +51,7 @@ class UserController extends Controller
             'kilometres'=>'required',
             'animateurs'=>'required'
         ]);
-        // sauvegarde dans la base de données les nouvelles randonnées 
+        // sauvegarde dans la base de données la nouvelle randonnée 
         $randonnee ->create($request->all()); 
 
         return redirect()->route('admin.index')->with('message', 'La nouvelle randonnée a été créée avec succès');
@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function edit(Randonnee $randonnee)
     {
-        return view('randonnee.edit', compact('randonnee'));
+        return view('randonnees.edit', compact('randonnee'));
     }
 
     /**

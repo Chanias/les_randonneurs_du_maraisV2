@@ -18,8 +18,8 @@
         <div class="container px-4 px-lg-5">
             <!-- Rando One Row-->
             <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="{{'./images/plage_normale.jpg'}}"
-                        alt=" gestion de projet"/></div>
+                <div class="col-lg-6"><img class="img-fluid" src="{{'./images/photos/plage_normale.jpg'}}"
+                        alt=" Bord de mer"/></div>
                 <div class="col-lg-6">
                     <div class="bg-light text-center h-100 project">
                         <div class="d-flex h-100">
@@ -41,7 +41,7 @@
            <hr>
             <!-- Rando Two Row-->
             <div class="row gx-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="{{'./images/foret_normale.jpg'}}" alt="lead dév" /></div>
+                <div class="col-lg-6"><img class="img-fluid" src="{{'./images/photos/foret_normale.jpg'}}" alt="lead dév" /></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-light text-center h-100 project">
                         <div class="d-flex h-100">
@@ -63,7 +63,7 @@
            <hr>
             <!-- Rando Three Row-->
             <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="{{'./images/moutons_normale.jpg'}}"
+                <div class="col-lg-6"><img class="img-fluid" src="{{'./images/photos/moutons_normale.jpg'}}"
                         alt=" gestion de projet"/></div>
                 <div class="col-lg-6">
                     <div class="bg-light text-center h-100 project">
@@ -113,10 +113,10 @@
     </section>
     <!--AVIS MARCHEURS END-->
     <!--FOOTER START-->
-    <footer>
+    {{-- <footer>
         <div class="container-fluid">
 
-            <img src="{{ asset('images/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;" class="rounded-pill">
+            <img src="{{ asset('images/photos/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;" class="rounded-pill">
         </div>
 
         <div class="details_2">
@@ -129,6 +129,6 @@
             <p>Les Randonneurs du Marais Sud Vendée - 2021.</p>
         </div>
         </div>
-    </footer>
+    </footer> --}}
     <!--FOOTER END-->
 @endsection
