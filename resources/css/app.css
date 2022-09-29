@@ -59,10 +59,45 @@ p{
 .btn i{
     width: 50px;
 }
+
+
 /*NAVBAR*/
 #navbar{
     background-color: #198754;
-   
+    
+}
+#navbar a{
+    color: whitesmoke;
+}
+#navbar .dropdown-item{
+    color: black;
+}
+
+/*FOOTER*/
+footer{
+    margin: 10px;
+    text-align: center;
+    background-color: #198754;
+    
+    padding-top: 70px;
+}
+footer img{
+   height: 40%;
+    margin: 10px;
+    padding: 5px;
+}
+.copyright p{
+    text-align: center;
+}
+
+/*CONNEXION*/
+#connexion{
+    box-shadow: 0 0 5px #198754;
+}
+
+/*INSCRIPTION*/
+#inscription{
+    box-shadow: 0 0 5px #198754;
 }
 
 /******************************PAGE ACCUEIL********************/
@@ -114,19 +149,8 @@ p{
 #image_et_texte p{
     margin: 3em;
 }
-footer{
-    margin: 10px;
-    text-align: center;
-    background-color: #198754;
-}
-footer img{
-   height: 40%;
-    margin: 10px;
-    padding: 5px;
-}
-.copyright p{
-    text-align: center;
-}
+
+
 .sorties-details{
     text-align: center;
 }
@@ -209,6 +233,9 @@ blockquote p::after {
 }
  
 /*PAGE ADMIN*/
+.card-group{
+    padding-bottom: 2em;
+}
 
 /*MEDIA SCREEN*/
 @media screen and (max-width: 1000px) {

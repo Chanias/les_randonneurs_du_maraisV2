@@ -19,16 +19,13 @@ class RoleSeeder extends Seeder
             'role'=>'Membre simple'
         ]);
         Role::create([
-            'role'=>'Animateur'
-        ]);
-        Role::create([
             'role'=>'Baliseur'
         ]);
         Role::create([
-            'role'=>'Bureau'
+            'role'=>'Animateur'
         ]);
         Role::create([
-            'role'=>'Trésorière'
+            'role'=>'Bureau'
         ]);
         Role::create([
             'role'=>'Administrateur'

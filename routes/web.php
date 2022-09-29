@@ -24,13 +24,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('compte', [App\Http\Controllers\UserController::class, 'compte'])->name('compte');
 Route::put('compte/update',  [App\Http\Controllers\UserController::class, 'update'])->name('compte.update');
 Route::put('compte/updatePassword',  [App\Http\Controllers\UserController::class, 'updatePassword'])->name('compte.updatePassword');
-Route::delete('user/destroy', [App\Http\Controllers\UserController::class, 'destroy'] )->name('user.destroy');
+Route::delete('compte/destroy/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('compte.destroy');
 
 //-----------------------------ADRESSES-------------------------------
-Route::resource('adresse', App\Http\Controllers\AdresseController::class);
+Route::resource('adresse', App\Http\Controllers\AdresseController::class)->only([
+    'store', 'update','destroy']);;
 
-//-----------------------------ACTIVITES-------------------------------
-Route::resource('activites', App\Http\Controllers\ActiviteController::class);
 //-----------------------------RANDONNEES-------------------------------
 Route::resource('randonnee', App\Http\Controllers\RandonneeController::class);
 
@@ -38,16 +37,23 @@ Route::resource('randonnee', App\Http\Controllers\RandonneeController::class);
 Route::resource('photos', App\Http\Controllers\PhotoController::class);
 
 //-----------------------------DOCUMENTS-------------------------------
-Route::resource('document', App\Http\Controllers\DocumentController::class);
+Route::resource('document', App\Http\Controllers\DocumentController::class)->only([
+    'store','destroy']);;
 
 //-----------------------------CONTACT-------------------------------
 Route::resource('contact', App\Http\Controllers\ContactController::class);
 
-//-----------------------------REGLEMENT-------------------------------
-Route::resource('reglement', App\Http\Controllers\ReglementController::class);
-
 //-----------------------------ADMIN-------------------------------
 Route::get('admin/index',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+
+//-----------------------------NOTIFICATIONS-------------------------------
+Route::resource('notification', App\Http\Controllers\NotificationController::class);
+
+//-----------------------------ACTUALITES-------------------------------
+Route::resource('actualite', App\Http\Controllers\ActualiteController::class);
+
+
+
 
 
 

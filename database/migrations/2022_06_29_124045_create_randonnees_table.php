@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('randonnees', function (Blueprint $table) {
             $table->id();
-            $table->string('date_rando');
-            $table->string('heure_depart');
-            $table->string('depart_rando');
-            $table->string('circuit');
-            $table->string('kilometres');
-            $table->string('animateurs');
+            $table->date('date');
+            $table->char('heure_rdv',5);
+            $table->char('heure_depart',5);
+            $table->string('point_de_depart',191);
+            $table->string('nom',60);
+            $table->string('commentaires',255);
+            $table->float('kilometres');
+            $table->string('lien_photos',255);
             $table->timestamps();
         });
     }

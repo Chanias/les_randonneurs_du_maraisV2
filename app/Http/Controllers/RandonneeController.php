@@ -22,19 +22,9 @@ class RandonneeController extends Controller
      */
     public function index()
     {
-        return view('admin.randonnees', compact('randonnee'));
+       $randonnees=Randonnee::all();
+        return view('randonnees.index', compact('randonnees'));
     }
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -43,29 +33,25 @@ class RandonneeController extends Controller
      */
     public function store(Request $request, Randonnee $randonnee)
     {
+        $this->authorize('create', $randonnee);
+
         $request->validate([
-            'date_rando'=>'required',
-            'heure_depart'=>'required',
-            'depart_rando'=>'required',
-            'circuit'=>'required',
-            'kilometres'=>'required',
-            'animateurs'=>'required'
+            'date' => 'required',
+            'heure_rdv' => 'required',
+            'heure_depart' => 'required',
+            'point_de_depart' => 'required',
+            'nom' => 'required',
+            'commentaires' => 'required',
+            'kilometres' => 'required',
+            'lien_photos' => 'nullable'
         ]);
+
+       $this->authorize('create', $randonnee);
+
         // sauvegarde dans la base de données la nouvelle randonnée 
-        $randonnee ->create($request->all()); 
+        $randonnee->create($request->all());
 
         return redirect()->route('admin.index')->with('message', 'La nouvelle randonnée a été créée avec succès');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -76,6 +62,8 @@ class RandonneeController extends Controller
      */
     public function edit(Randonnee $randonnee)
     {
+        $this->authorize('update', $randonnee);
+
         return view('randonnees.edit', compact('randonnee'));
     }
 
@@ -87,23 +75,25 @@ class RandonneeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
     public function update(Request $request, Randonnee $randonnee)
     {
+        $this->authorize('update', $randonnee);
+
         $request->validate([
-            'date_rando'=>'required',
-            'heure_depart'=>'required',
-            'depart_rando'=>'required',
-            'circuit'=>'required',
-            'kilometres'=>'required',
-            'animateurs'=>'required'
-           
+            'date' => 'required',
+            'heure_rdv' => 'required',
+            'heure_depart' => 'required',
+            'point_de_depart' => 'required',
+            'nom' => 'required',
+            'commentaires' => 'required',
+            'kilometres' => 'required',
+            'lien_photos' => 'nullable',
         ]);
 
         $randonnee->update($request->all());
         return redirect()->route('admin.index')->with('message', 'La randonnée a bien été modifié...');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -113,6 +103,8 @@ class RandonneeController extends Controller
      */
     public function destroy(Randonnee $randonnee)
     {
+        $this->authorize('delete', $randonnee);
+        
         $randonnee->delete();
         return redirect()->route('admin.index')->with('message', 'La randonnée a bien été supprimé...');
     }

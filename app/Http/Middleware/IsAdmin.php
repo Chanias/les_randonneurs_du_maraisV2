@@ -14,13 +14,23 @@ class IsAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) // je n'ai pas compris pour Closure et $next
+    public function handle(Request $request, Closure $next) 
     {
-        if (Auth::user() && Auth::user()->role_id == 6) {
+        if (Auth::user() && Auth::user()->role_id == 5) {
             return $next($request);
         }
-
-        return redirect()->route('login')->with('message', 'Vous n avez pas la permission d accéder à cette page !! Veuillez contacter la personne qui gére le site.');
-        //abort erreur 403
+        return $next($request);
+        if (Auth::user() && Auth::user()->role_id == 4) {
+            return $next($request);
+        }
+        return $next($request);
+        if (Auth::user() && Auth::user()->role_id == 3) {
+            return $next($request);
+        }
+        return $next($request);
+        if (Auth::user() && Auth::user()->role_id == 2) {
+            return $next($request);
+        }
+        return $next($request);
     }
 }

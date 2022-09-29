@@ -8,19 +8,16 @@
     <div class="container">
         <h1 class="text-center p-2">Mon compte</h1>
         <h4 class="text-center p-3">Bienvenue {{ $user->nom }} {{ $user->prenom }} ! </h4>
+        <h5 class="text-center p-3">Votre rôle est {{ $user->role->role }}</h5>
         <div class="row">
 
             <div class="col-md-6">
-
                 <h4 class="text-center p-4">Mes informations</h4>
-
                 <div class="row">
                     <div class="col-10 offset-1 text-center">
                         <form class="col-12 mx-auto p-5 border " action="{{ route('compte.update') }}" method="POST">
                             @csrf
                             @method('PUT')
-
-
                             <input type="hidden" name="email" value="{{ $user->email }}" id="email">
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -32,16 +29,20 @@
                                 id="num_telephone_fixe">
                             <div class="form-group">
                                 <label for="num_telephone_fixe">Numéro de téléphone fixe</label>
-                                <input type="text" class="form-control" name="num_telephone_fixe"
-                                    value="{{ $user->num_telephone_fixe }}" id="num_telephone_fixe">
+                                <input type="text" class="form-control" placeholder="00 00 00 00 00"
+                                    name="num_telephone_fixe" value="{{ $user->num_telephone_fixe }}"
+                                    id="num_telephone_fixe">
+                                <p small class="text-muted">Veuillez renseigner comme l'exemple : 00 00 00 00 00</small></p>
                             </div>
 
                             <input type="hidden" name="num_telephone_portable" value="{{ $user->num_telephone_portable }}"
                                 id="num_telephone_portable">
                             <div class="form-group">
                                 <label for="num_telephone_portable">Numéro de téléphone portable</label>
-                                <input type="text" class="form-control" name="num_telephone_portable"
-                                    value="{{ $user->num_telephone_portable }}" id="num_telephone_portable">
+                                <input type="text" class="form-control" placeholder="00 00 00 00 00"
+                                    name="num_telephone_portable" value="{{ $user->num_telephone_portable }}"
+                                    id="num_telephone_portable">
+                                <p small class="text-muted">Veuillez renseigner comme l'exemple : 00 00 00 00 00</small></p>
                             </div>
                             <button type="submit" class="btn btn-primary">Modifier</button>
                         </form>
@@ -51,9 +52,7 @@
             </div>
 
             <div class="col-md-6">
-
                 <h4 class="text-center p-4">Modifier mon mot de passe</h4>
-
                 <div class="row">
                     <div class="col-10 offset-1 text-center">
                         <form class="col-12 mx-auto p-5 border " action="{{ route('compte.updatePassword') }}"
@@ -97,7 +96,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
             <!----------------------------------------MODIFIER MON ADRESSE-------------------------------------------------------->
 
@@ -137,15 +135,11 @@
             <div class="col-md-8 offset-2 text-center">
                 <h3>SUPPRIMER MON COMPTE</h3>
                 <!--SUPPRIMER L'UTILISATEUR-->
-                <form method="POST" action="{{ route('user.destroy', $user) }}">
-                    <!-- CSRF token -->
+                <form class="section" action="{{ route('compte.destroy', $user) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <td>
-                        <input type="submit" class="btn btn-danger" value="Supprimer mon compte">
-                    </td>
+                    <input type="submit" class="btn btn-danger" value="Supprimer le compte">
                 </form>
-
 
             </div>
         </div>

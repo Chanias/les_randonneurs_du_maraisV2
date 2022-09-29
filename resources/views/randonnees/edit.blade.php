@@ -21,11 +21,11 @@
                     <div class="col-md-6 mx-auto">
                         <label for="label" class="mt-3 fs-4">Nouvelle date de randonnées :</label>
                         <div class="control">
-                            <input class="input" id="content" type="text" name="date_rando"
-                                value="{{ $randonnee->date_rando }}">
+                            <input class="input" id="content" type="text" name="date"
+                                value="{{ $randonnee->date }}">
                         </div>
-                        @if ($errors->has('date_rando'))
-                            <p class="help is-danger">{{ $errors->first('date_rando') }}</p>
+                        @if ($errors->has('date'))
+                            <p class="help is-danger">{{ $errors->first('date') }}</p>
                         @endif
                     </div>
                 </div>
@@ -103,9 +103,4 @@
       </form>
       @endif 
 </div>
-
-
-
-
-
 @endsection

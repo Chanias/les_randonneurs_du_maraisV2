@@ -18,19 +18,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        //'identifiant', 
         'nom',
         'prenom',
         'date_de_naissance',
-        //'adresse',
-        //'code_postal',
-        //'ville',
         'num_telephone_fixe',
         'num_telephone_portable',
         'email',
         'password',
-        
     ];
+
+//on charge automatique le role du user
+    protected $with = [
+        'role'
+    ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,11 +55,22 @@ class User extends Authenticatable
     {
         return $this->hasOne(Adresse::class);
     }
-    public function role(){
+    public function document()
+    {
+        return $this->hasOne(Document::class);
+    }
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
-    public function isAdmin(){
-        if($this->role_id==6){ // return $this->role=='admin'
+    public function animateur()
+    {
+        return $this->hasOne(Animateur::class);
+    }
+    public function isAdmin()
+    {
+        if ($this-> role->role=='Administrateur'){
             return true;
-        }}
+        }
+    }
 }

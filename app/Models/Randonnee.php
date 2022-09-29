@@ -10,11 +10,25 @@ class Randonnee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date_rando', 
-        'heure_depart', 
-        'depart_rando', 
-        'circuit', 
+        'date', 
+        'heure_rdv', 
+        'heure_depart',
+        'point_de_depart', 
+        'nom', 
+        'commentaires',
         'kilometres',
-        'animateurs'
+        'lien_photos',
     ];
+    protected $with=[
+        'carte'
+    ];
+
+    public function carte()
+    {
+        return $this->hasOne(Carte::class);
+    }
+    public function animateur()
+    {
+        return $this->hasOne(Animateur::class);
+    }
 }

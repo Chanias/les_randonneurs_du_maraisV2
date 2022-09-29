@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Diablo18!'),
             'email' => 'florianesiedlecki@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>5
         ]);
         User::create([
             'nom'=>'ARSICAUD',
@@ -36,6 +37,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'marieclaudearsicaud@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>4
         ]);
         User::create([
             'nom'=>'AYRAUD',
@@ -46,6 +48,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'remi.ayraud@orange.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'BAUDON',
@@ -56,6 +59,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'jjfbaudon@wanadoo.fr',
             'remember_token' => Str::random(10),
+           
         ]);
         User::create([
             'nom'=>'BAUDON',
@@ -66,6 +70,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'jjfbaudon@wanadoo.fr',
             'remember_token' => Str::random(10),
+            
         ]);
         User::create([
             'nom'=>'BEGUE',
@@ -106,6 +111,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'bonneau.marcelle@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>5
         ]);
         User::create([
             'nom'=>'BONNEAU',
@@ -166,6 +172,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'jp.decloux@wanadoo.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>5,
         ]);
         User::create([
             'nom'=>'DECLOUX',
@@ -176,6 +183,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'jp.decloux@wanadoo.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'DELAHAYE',
@@ -236,6 +244,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'chantal.fillonneau17@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'FILLONNEAU',
@@ -246,6 +255,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'chantal.fillonneau17@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'GAUTRONNEAU',
@@ -276,6 +286,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'rossi.lucette@orange.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>2
         ]);
         User::create([
             'nom'=>'GOUBIN',
@@ -386,6 +397,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'nadbena@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>2
         ]);
         User::create([
             'nom'=>'MOCQUET',
@@ -396,6 +408,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'pmocquet@gmail.com',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'MOLERO',
@@ -410,7 +423,7 @@ class UserSeeder extends Seeder
         User::create([
             'nom'=>'MONTAUBIN',
             'prenom'=>'Béatrice',
-            'date_de_naissance'=>'15/4/55',
+            'date_de_naissance'=>'15/04/1955',
             'num_telephone_fixe'=>'02 53 75 97 38',
             'num_telephone_portable'=>'06 12 76 36 00',
             'password' => Hash::make('Bonbon79!'),
@@ -486,6 +499,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'alabri85@orange.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'PIERRE',
@@ -496,6 +510,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'alabri85@orange.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>4
         ]);
         User::create([
             'nom'=>'RAGUIN',
@@ -526,6 +541,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'christiane.rondel@orange.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>3
         ]);
         User::create([
             'nom'=>'ROSSI',
@@ -546,6 +562,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'mercedes.sabouraud@orange.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>4
         ]);
         User::create([
             'nom'=>'SOULARD',
@@ -576,6 +593,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Bonbon79!'),
             'email' => 'jmwgb@free.fr',
             'remember_token' => Str::random(10),
+            'role_id'=>4
         ]);
 
     }

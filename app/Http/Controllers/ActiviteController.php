@@ -14,8 +14,7 @@ class ActiviteController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('activite', compact('user'));
+      
     }
   
     /**

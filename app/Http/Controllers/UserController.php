@@ -55,9 +55,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user)
     {
-        //
+        
+
     }
 
     /**
@@ -82,6 +83,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        
         $request->validate([
             'email' => 'nullable|min:10|max:50',
             'num_telephone_fixe' => 'nullable|max:14',

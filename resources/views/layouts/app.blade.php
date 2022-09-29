@@ -17,7 +17,9 @@
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -37,82 +39,39 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/home">A propos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('activites.index') }}">Randonnées</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"href="{{ route('contact.index') }}">Contact</a>
-                        </li>
-                        <!--QUAND ADMINISTRATEUR : METTRE VISIBLE CE DROPDOWN-->
-                        @if (Auth::user() && Auth::user()->role_id == 6)
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Administrateur
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('admin.index') }}">Adhérents</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="">Documents</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{route('admin.index')}}">Randonnées</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="">Comptes-rendus</a></li>
-                                    <li><a class="dropdown-item" href="">Actualités</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="">Photos</a></li>
-                                </ul>
+                       
+
+                        @if (Auth::user() && Auth::user()->role_id != 1)
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/home">A propos</a>
                             </li>
-                            <!--QUAND TRESORIERE OU PRESIDENTE : METTRE VISIBLE CE DROPDOWN-->
-                        @elseif (Auth::user() && Auth::user()->role_id == 5)
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Administrateur
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="">Trésorerie ou pésidente</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('randonnee.index') }}">Randonnées</a>
                             </li>
-                            <!--QUAND SECRETAIRE : METTRE VISIBLE CE DROPDOWN-->
-                        @elseif (Auth::user() && Auth::user()->role_id == 4)
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Administrateur
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="">bureau</a></li>
-                                    <li><a class="dropdown-item" href="">dqqdzdqz</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
                             </li>
-                            <!--QUAND ANIMATEUR : METTRE VISIBLE CE DROPDOWN-->
-                        @elseif (Auth::user() && Auth::user()->role_id == 3)
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Administrateur
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="">animateurs</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link"href="{{ route('actualite.index') }}">Actualités</a>
                             </li>
-                            <!--QUAND BALISEUR : METTRE VISIBLE CE DROPDOWN-->
-                        @elseif (Auth::user() && Auth::user()->role_id == 2)
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Administrateur
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="">baliseurs</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link"href="{{ route('contact.index') }}">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"href="{{ route('admin.index') }}">Administration</a>
+                            </li>
+                        @else 
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/home">A propos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('randonnee.index') }}">Randonnées</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"href="{{ route('contact.index') }}">Contact</a>
                             </li>
                         @endif
                     </ul>
@@ -193,21 +152,22 @@
     </main>
     </div>
     <footer>
-        <div class="container-fluid" id="footer">
+        <div class="container">
             <div class="copyright">
-                <img src="{{ asset('images/photos/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;" class="rounded-pill">
+                <img src="{{ asset('images/photos/logo_fond_vert.jpeg') }}" alt="Logo" style="width:60px;"
+                    class="rounded-pill">
             </div>
-        
+
             <div class="details_2">
                 <button type="button" class="btn-1">Copyright<a href="#"></a></button>
                 <button type="button" class="btn-1">Mentions Légales<a href="#"></a></button>
                 <button type="button" class="btn-1">Politique de confidentialité<a href="#"></a></button>
             </div>
-        
+
             <div class="copyright">
                 <p>Les Randonneurs du Marais Sud Vendée - 2022 par FLORIANE SIEDLECKI.</p>
             </div>
-            </div>
+        </div>
         </div>
     </footer>
 </body>

@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="btn">
-   </div>
+    <div class="btn">
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12 home-title">
@@ -14,8 +14,6 @@
             </div>
         </div>
     </div>
-
-
     <!--CAROUSEL START-->
     <div class="container-fluid">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -29,13 +27,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
-                    <img src="{{ asset('images/photos/bois_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/bois_reduite.jpeg') }}" class="d-block w-100" alt="marche_bois">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="{{ asset('images/photos/marais_salant_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/marais_reduite.JPG') }}" class="d-block w-100" alt="marche_marais">
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <img src="{{ asset('images/photos/port_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('images/photos/port_reduite.jpeg') }}" class="d-block w-100" alt="marche_ville">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -48,7 +46,6 @@
             </button>
         </div>
     </div>
-
     <!--CAROUSEL END-->
 
     <!--PRESENTATION START-->
@@ -111,15 +108,15 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="sorties-details">
-                                    <img src="{{ asset('images/photos/petites/foret_petite.jpeg') }}"
-                                        class="d-block w-100" alt="...">
+                                    <img src="{{ asset('images/photos/petites/foret_petite.jpeg') }}" class="d-block w-100"
+                                        alt="...">
                                     <h4>Forêt</h4>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="sorties-details">
-                                    <img src="{{ asset('images/photos/petites/cheveaux_petite.jpeg') }}" class="d-block w-100"
-                                        alt="...">
+                                    <img src="{{ asset('images/photos/petites/cheveaux_petite.jpeg') }}"
+                                        class="d-block w-100" alt="...">
                                     <h4>Découverte nature</h4>
                                 </div>
                             </div>
@@ -127,14 +124,16 @@
                     </div>
                     <div class="container" id="plus">
                         <div class="row">
-                            <div class="col-md-4">                            
+                            <div class="col-md-4">
                                 <h2 class="fs-4"><i class="fas fa-users mb-4"></i> Public concerné : tous public</h2>
                             </div>
-                            <div class="col-md-4">                              
-                                <h2 class="fs-4"><i class="fas fa-hiking mb-4"></i> Jours de sorties : mercredi et samedi </h2>
+                            <div class="col-md-4">
+                                <h2 class="fs-4"><i class="fas fa-hiking mb-4"></i> Jours de sorties : mercredi et samedi
+                                </h2>
                             </div>
-                            <div class="col-md-4">                             
-                                <h2 class="fs-4"><i class="fas fa-euro-sign mb-4"></i> Coût individuel de la cotisation : 30 €</h2>
+                            <div class="col-md-4">
+                                <h2 class="fs-4"><i class="fas fa-euro-sign mb-4"></i> Coût individuel de la cotisation :
+                                    30 €</h2>
                             </div>
                         </div>
                     </div>
@@ -149,8 +148,9 @@
                         <h4>Un certificat médical sera demandé pour toute nouvelle inscription.</h4>
                     </div>
             </section>
-
             <!--SORTIES END-->
+
+
             <!--CAROUSEL 2 START-->
             <div class="container-fluid" id="carrousel2">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -174,7 +174,8 @@
                         </div>
 
                         <div class="carousel-item">
-                            <img src="{{ asset('images/photos/plage_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/photos/plage_reduite.jpeg') }}" class="d-block w-100"
+                                alt="...">
                             <div class="carousel-caption w-25 h-75">
                             </div>
                         </div>
@@ -182,7 +183,8 @@
                             <span>La première marche est gratuite, venez en profiter !!!</span>
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('images/photos/moutons_reduite.jpeg') }}" class="d-block w-100" alt="...">
+                            <img src="{{ asset('images/photos/moutons_reduite.jpeg') }}" class="d-block w-100"
+                                alt="...">
                             <div class="carousel-caption w-25 h-75">
                             </div>
                         </div>
@@ -205,23 +207,22 @@
             <!--CAROUSEL 2 END-->
 
 
-            @php
-//   SI LE USER EST CONNECTE ENLEVER LA PARTIE NOUS REJOINDRE SINON QUAND PAS CONNECTE LA LAISSER
-@endphp
-            <!--NOUS REJOINDRE START-->
-            <section id="nous_rejoindre">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Nous rejoindre</h2>
-                        </div>
-                    </div>
-                    <p>Si vous voulez adhérer à l'association, voici le lien d'inscription: <a
-                            href="{{ route('register') }}" class="btn-1">Nous rejoindre</a>
-                    </p>
 
-                </div>
-            </section>
-            <!--NOUS REJOINDRE END-->
-          
+            @if (!auth()->check())
+                <!--NOUS REJOINDRE START-->
+                <section id="nous_rejoindre">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Nous rejoindre</h2>
+                            </div>
+                        </div>
+                        <p>Si vous voulez adhérer à l'association, voici le lien d'inscription: <a
+                                href="{{ route('register') }}" class="btn-1">Nous rejoindre</a>
+                        </p>
+
+                    </div>
+                </section>
+                <!--NOUS REJOINDRE END-->
+            @endif
         @endsection

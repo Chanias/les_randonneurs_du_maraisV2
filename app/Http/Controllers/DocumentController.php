@@ -2,50 +2,30 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Document;
 
 class DocumentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Document $document)
     {
+        $this->authorize('store', $document);
         $request->validate([
             'nom_document' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,tiff,svg|max:2048',
 
         ]);
         // on donne un nom à l'image : timestamp en temps unix + extension
         $imageName = time() . '.' . $request->image->extension();
 
         //on déplace l'image dans public/images et on instancie un nouveau document
-        $request->image->move(public_path('images/photos'), $imageName);
+        $request->image->move(public_path('images/documents'), $imageName);
         $document = new Document;
 
         $this->authorize('create', $document);
@@ -55,41 +35,6 @@ class DocumentController extends Controller
 
         return redirect()->route('admin.index')->with('message', 'Le document a bien été ajouté...');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -98,6 +43,7 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
+        $this->authorize('delete', $document);
         $document->delete();
         return redirect()->route('admin.index')->with('message', 'Le document a bien été supprimé...');
     }

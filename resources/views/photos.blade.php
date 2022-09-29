@@ -45,7 +45,7 @@
                     <img src="{{ asset('images/photos/petites/moutons_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
-            <button type="button" class="btn-1">En savoir polus<a href="{{ route('register') }}"></a></button>
+            
         </div>
         <div class="container">
             <div class="row">
@@ -76,7 +76,7 @@
                     <img src="{{ asset('images/photos/petites/footer_petite.jpeg') }}" class="d-block w-100" alt="image">
                 </div>
             </div>
-            <button type="button" class="btn-1">En savoir polus<a href="{{ route('register') }}"></a></button>
+            
         </div>
     </section>
 

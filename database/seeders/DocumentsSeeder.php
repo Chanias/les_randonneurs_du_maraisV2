@@ -16,28 +16,34 @@ class DocumentsSeeder extends Seeder
     public function run()
     {
         Document::create([
-            'nom_document'=>'Certificat médical de Catherine Decloux',
-            'image'=>'certificat_medical_CD.jpg'
+            'nom'=>'Certificat médical de Catherine Decloux',
+            'image'=>'certificat_medical_CD.jpg',
+            'categorie'=>'certificat_medical',
+            
         ]);
 
         Document::create([
-            'nom_document'=>'Certificat médical de Jean-Paul Decloux',
-            'image'=>'certificat_medical_JPD.jpg'
+            'nom'=>'Certificat médical de Jean-Paul Decloux',
+            'image'=>'certificat_medical_JPD.jpg',
+            'categorie'=>'certificat_medical',
         ]);
 
         Document::create([
-            'nom_document'=>'Certificat médical de Marcelle Bonneau',
-            'image'=>'certificat_medical_MB.jpg'
+            'nom'=>'Certificat médical de Marcelle Bonneau',
+            'image'=>'certificat_medical_MB.jpg',
+            'categorie'=>'certificat_medical',
         ]);
 
         Document::create([
-            'nom_document'=>'Certificat médical de Rémi Ayraud',
-            'image'=>'certificat_medical_RA.jpg'
+            'nom'=>'Certificat médical de Rémi Ayraud',
+            'image'=>'certificat_medical_RA.jpg',
+            'categorie'=>'certificat_medical',
         ]);
 
         Document::create([
-            'nom_document'=>'Questionnaire de ...',
-            'image'=>'modele_questionnaire.jpg'
+            'nom'=>'Questionnaire de ...',
+            'image'=>'Modele_questionnaire.jpg',
+            'categorie'=>'questionnaire',
         ]);
     }
 }

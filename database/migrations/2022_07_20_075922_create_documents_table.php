@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_document');
-            $table->string('image');
+            $table->string('nom',50);
+            $table->string('image',191);
+            $table->enum('categorie',['certificat_medical','questionnaire', 'carte','note_de_frais','compte_rendu','programme_balisage']);
             $table->timestamps();
         });
     }
