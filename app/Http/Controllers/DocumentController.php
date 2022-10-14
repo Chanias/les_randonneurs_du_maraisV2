@@ -7,6 +7,11 @@ use App\Models\Document;
 
 class DocumentController extends Controller
 {
+    public function index()
+    {
+        $documents = Document::all();
+        return view('documents.index', compact('documents'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -15,10 +20,11 @@ class DocumentController extends Controller
      */
     public function store(Request $request, Document $document)
     {
-        $this->authorize('store', $document);
+        $this->authorize('create', [$document, $request->category]);
         $request->validate([
-            'nom_document' => 'required',
+            'nom' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,tiff,svg|max:2048',
+            'categorie' => 'required',
 
         ]);
         // on donne un nom à l'image : timestamp en temps unix + extension
@@ -28,9 +34,11 @@ class DocumentController extends Controller
         $request->image->move(public_path('images/documents'), $imageName);
         $document = new Document;
 
-        $this->authorize('create', $document);
+
 
         $document->image = $imageName;
+        $document->nom = $request->nom;
+        $document->categorie = $request->categorie;
         $document->save();
 
         return redirect()->route('admin.index')->with('message', 'Le document a bien été ajouté...');

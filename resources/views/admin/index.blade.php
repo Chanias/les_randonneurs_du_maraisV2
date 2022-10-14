@@ -6,7 +6,18 @@
 
 @section('content')
     <script>
+        let nomsTableaux = ['liste_adherents', 'liste_documents', 'liste_randonnees', 'ajouter_document', 'creer_randonnee',
+            'creer_actualite', 'actualites', 'balisage']
+
         function showElement(id) {
+           
+            nomsTableaux.forEach(element => { // nom du tableau 
+                let objet =document.getElementById(element)
+                if (objet){
+                    objet.style.display='none'
+                }
+                // document.getElementById(element).style.display = 'none'
+            });
             let element = document.getElementById(id)
             if (element.style.display == 'block') {
                 element.style.display = 'none'
@@ -14,92 +25,106 @@
                 element.style.display = 'block'
             }
         }
-
-        window.onload = (event) => {
-            console.log("test");
-            console.log(window.location.href);
-        };
     </script>
 
     <div class="container text-center">
         <div class="row text-center">
             <h2 class="mb-4">Bienvenue sur votre interface d'administration</h2>
         </div>
+        @can('create', App\Models\User::class)
         <button class="btn btn-primary btn-lg" onclick="showElement('liste_adherents')">Liste des adhérents</button>
-        <button class="btn btn-primary btn-lg" onclick="showElement('liste_documents')">Liste des documents</button>
+        @endcan
+        @can('create', App\Models\Document::class)
+        <button class="btn btn-primary btn-lg" onclick="showElement('liste_documents')">Liste des
+            documents</button>
+            @endcan
         <button class="btn btn-primary btn-lg" onclick="showElement('liste_randonnees')">Liste des randonnées</button>
 
     </div>
     <br>
     <div class="container text-center">
+        @can('create', App\Models\Document::class)
         <button class="btn btn-success btn-lg" onclick="showElement('ajouter_document')">Ajouter un document</button>
-        <button class="btn btn-success btn-lg" onclick="showElement('creer_randonnee')">Créer une randonnee</button>
+        @endcan
+
+        <button class="btn btn-success btn-lg" onclick="showElement('creer_randonnee')">Créer une
+            randonnee</button>
+
+       @can('create', App\Models\Actualite::class)
         <button class="btn btn-success btn-lg" onclick="showElement('creer_actualite')">Créer une actualité</button>
+        @endcan
     </div>
     <br>
     <div class="container text-center">
-        <button class="btn btn-primary btn-lg" onclick="showElement('notifications')">Mes notifications</button>
+        {{-- <button class="btn btn-primary btn-lg" onclick="showElement('notifications')">Mes notifications</button> --}}
         <button class="btn btn-primary btn-lg" onclick="showElement('actualites')">Les actualités</button>
         <button class="btn btn-primary btn-lg" onclick="showElement('balisage')">Le balisage</button>
+
     </div>
 
 
     <!---------------------------------------------LES ADHERENTS :---------------------------------------------->
+    @if (Auth::user() && Auth::user()->role_id != 5)
+    @else
+        <!--LISTE ADHERENTS-->
+        <div class="container" id="liste_adherents"style="padding-top: 5%;display: none">
+            <div class="mb-4">
+                <!-- On parcourt la liste des adhérents -->
+                <h2 class="text-center">La liste des adhérents</h2>
+                <table class="table text-center">
+                    <thead>
 
-    <!--LISTE ADHERENTS-->
-    <div class="container" id="liste_adherents"style="padding-top: 5%;display: none">
-        <div class="mb-4">
-            <!-- On parcourt la liste des adhérents -->
-            <h2 class="text-center">La liste des adhérents</h2>
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>Nom :</th>
-                        <th>Prénom :</th>
-                        <th>Date de naissance :</th>
-                        <th>Numéro de téléphone fixe :</th>
-                        <th>Numéro de téléphone portable :</th>
-                        <th>Email :</th>
-                        <th>Rôle :</th>
-
-                        <th>Supprimer</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->nom }}</td>
-                            <td>{{ $user->prenom }}</td>
-                            <td>{{ $user->date_de_naissance }}</td>
-                            <td>{{ $user->num_telephone_fixe }}</td>
-                            <td>{{ $user->num_telephone_portable }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role->role }}</td>
-                            <td>
+                            <th>Nom :</th>
+                            <th>Prénom :</th>
+                            <th>Date de naissance :</th>
+                            <th>Numéro de téléphone fixe :</th>
+                            <th>Numéro de téléphone portable :</th>
+                            <th>Email :</th>
+                            <th>Rôle :</th>
 
-                                <!--SUPPRIMER L'UTILISATEUR-->
-                                <form class="section" action="{{ route('compte.destroy', $user) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" class="btn btn-danger" value="Supprimer le compte">
-                                </form>
-                            </td>
+                            <th>Supprimer</th>
                         </tr>
-                </tbody>
-                @endforeach
-            </table>
-        </div>
-        {{ $users->links() }}
+
+                    </thead>
+
+                    <tbody>
+                        @foreach ($users as $user)
+                            @can('view', $user)
+                                <tr>
+                                    <td>{{ $user->nom }}</td>
+                                    <td>{{ $user->prenom }}</td>
+                                    <td>{{ $user->date_de_naissance }}</td>
+                                    <td>{{ $user->num_telephone_fixe }}</td>
+                                    <td>{{ $user->num_telephone_portable }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role->role }}</td>
+                                @endcan
+                                <td>
+
+                                    @can('delete', $user)
+                                        <!--SUPPRIMER L'UTILISATEUR-->
+                                        <form class="section" action="{{ route('compte.destroy', $user) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" class="btn btn-danger" value="Supprimer le compte">
+                                        </form>
+                                    @endcan
+                                </td>
+                            </tr>
+                    </tbody>
+    @endforeach
+    </table>
+    </div>
+    {{ $users->links() }}
 
     </div>
-
+    @endif
     <!----------------------------------------------------------------------------------------------------->
     <!------------------------------------------MES NOTIFICATIONS------------------------------------------->
     <!--LES NOTIFICAIONS A LIRE-->
-    <div class="container p-5 text-center" id="notifications" style="padding-top: 5%;display: none">
+    {{-- <div class="container p-5 text-center" id="notifications" style="padding-top: 5%;display: none">
         <h2>Mes notifications</h2>
-
         <div class="row">
             <div class="card-group">
                 <div class="card col-md-2 p-5 ">
@@ -107,7 +132,6 @@
                     <div class="card-body">
                         <h3 class="card-title">Notifications lues :</h5>
                             <p class="card-text">3</p>
-
                     </div>
                     <table>
                         <thead>
@@ -116,7 +140,6 @@
                                 <th>Commentaire :</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             @foreach ($notifications as $notification)
                                 <tr>
@@ -127,7 +150,6 @@
                         @endforeach
                     </table>
                 </div>
-
                 <div class="card col-md-2  p-5 ">
                     <div class="card-img-top">
                         <i class="fas fa-times-circle fa-3x"></i>
@@ -139,21 +161,14 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="card-group">
-
-
                 <div class="card col-md-2 p-5 ">
                     <i class="fas fa-check-circle fa-3x"></i>
                     <div class="card-body">
                         <h3 class="card-title">Notifications traitées :</h5>
                             <p class="card-text">3</p>
-
                     </div>
                 </div>
-
                 <div class="card col-md-2  p-5 ">
                     <div class="card-img-top">
                         <i class="fas fa-times-circle fa-3x"></i>
@@ -165,10 +180,8 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-    </div>
+    </div> --}}
     <!--LES NOTIFICAIONS A TRAITER-->
     <!----------------------------------------------------------------------------------------------------->
 
@@ -195,6 +208,7 @@
 
                         <th>Modifier</th>
                         <th>Supprimer</th>
+
                     </tr>
                 </thead>
 
@@ -250,20 +264,24 @@
         {{ $randonnees->links() }}
     </div>
 
+
+
+
     <!----------------------------------------------------------------------------------------------------->
-    @can('create', $randonnee)
-        <!-----------------------------------------LA CREATION D'UNE RANDONNEE:------------------------------------------------>
-        <div class="container" id="creer_randonnee" style="padding-top: 5%;display: none">
-            <div class="row text-center">
-                <div class="col-md-12 text-center">
-                    <h3>Créer une randonnée</h3>
-                </div>
-                <hr>
-                <div class="row">
-                    <form action="{{ route('randonnee.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+
+    <!-----------------------------------------LA CREATION D'UNE RANDONNEE:------------------------------------------------>
+    <div class="container" id="creer_randonnee" style="padding-top: 5%;display: none">
+        <div class="row text-center">
+            <div class="col-md-12 text-center">
+                <h3>Créer une randonnée</h3>
+            </div>
+            <hr>
+            <div class="row">
+                <form action="{{ route('randonnee.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @can('create', $randonnee)
                         <div class="mb-3 row">
-                            <label class="label">Date de la randonnee :</label>
+                            <label class="label">Date de la randonnée :</label>
                             <div class="control">
                                 <input class="input" type="text" name="date">
                             </div>
@@ -300,7 +318,7 @@
                         <div class="mb-3 row">
                             <label class="label">Commentaire :</label>
                             <div class="control">
-                                <input class="input" type="text" name="circuit">
+                                <input class="input" type="text" name="commentaires">
                             </div>
                         </div>
 
@@ -310,28 +328,34 @@
                                 <input class="input" type="number" name="kilometres">
                             </div>
                         </div>
-
-                        <div class="mb-3 row">
-                            <label class="label">Le lien pour les photos :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="lien_photos">
-                            </div>
+                    @endcan
+                    <div class="mb-3 row">
+                        <label class="label">La carte :</label>
+                        <div class="control">
+                            <input class="input" type="text" name="carte">
                         </div>
-
-                        <div class="field">
-                            <div class="control">
-                                <button class="btn btn-success" type="submit">Valider</button>
-                            </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="label">Les animateurs :</label>
+                        <div class="control">
+                            <input class="input" type="text" name="animateurs">
                         </div>
+                    </div>
 
-                    </form>
-                </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="btn btn-success" type="submit">Valider</button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
-    @endcan
+    </div>
+
 
     <!------------------------------------LES DOCUMENTS--------------------------------------------->
-    {{-- @can('view', $document)  --}}
+
     <!--LA LISTE DES DOCUMENTS-->
     <div class="container" id="liste_documents" style="padding-top: 5%;display: none">
         <div class="mb-3">
@@ -339,68 +363,77 @@
             <h2 class="text-center">La liste des documents</h2>
             <div class="col-12 text-center">
                 <div class="row mb-5">
-                    @foreach ($documents as $document)
-                        <div class="card text-center" style="width: 18rem;">
-                            <h3 class="card-title ">{{ $document->nom }}</h3>
-                            <div class="card-body">
-                                <img class="card-img" src="{{ asset("images/documents/$document->image") }}"
-                                    alt="Documents">
-                            </div>
-                            {{-- @endcan --}}
 
-                            {{-- @can('delete', $document)  --}}
-                            <!--SUPPRIMER UN DOCUMENT-->
-                            <form method="POST" action="{{ route('document.destroy', $document) }}">
-                                <!-- CSRF token -->
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" class="btn btn-danger" value="Supprimer le document">
-                            </form>
-                            {{-- @endcan --}}
-                        </div>
+                    @foreach ($documents as $document)
+                        @can('view', $document)
+                            <div class="card text-center" style="width: 18rem;">
+                                <h3 class="card-title ">{{ $document->nom }}</h3>
+                                <div class="card-body">
+                                    <img class="card-img" src="{{ asset("images/documents/$document->image") }}"
+                                        alt="Documents">
+                                </div>
+
+                                @can('delete', $document)
+                                    <!--SUPPRIMER UN DOCUMENT-->
+                                    <form method="POST" action="{{ route('document.destroy', $document) }}">
+                                        <!-- CSRF token -->
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn btn-danger" value="Supprimer le document">
+                                    </form>
+                                @endcan
+                            </div>
+                        @endcan
                     @endforeach
+
                 </div>
             </div>
         </div>
     </div>
 
-
     <!------------------------------------------------------------------------------------------------>
 
     <!------------------------------------------AJOUTER UN DOCUMENT-------------------------------------------------->
-    {{-- @can('create', $document)  --}}
-    <div class="container" id="ajouter_document" style="padding-top: 5%;display: none">
-        <div class="row text-center">
-            <div class="col-md-12 text-center">
-                <h3>Ajouter un document</h3>
-            </div>
-            <hr>
-            <div class="row">
-                <form action="{{ route('document.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3 row">
-                        <label class="label">Nom du document :</label>
-                        <div class="control">
-                            <input class="input" type="text" name="nom_document">
+    @can('create', $document)
+        <div class="container" id="ajouter_document" style="padding-top: 5%;display: none">
+            <div class="row text-center">
+                <div class="col-md-12 text-center">
+                    <h3>Ajouter un document</h3>
+                </div>
+                <hr>
+                <div class="row">
+                    <form action="{{ route('document.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3 row">
+                            <label class="label">Nom du document :</label>
+                            <div class="control">
+                                <input class="input" type="text" name="nom">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3 mx-auto">
-                        <label for="image" class="fs-4 mt-3">Image : </label>
-                        <input type="file" name="image" class="form-control">
-                    </div>
-
-
-                    <div class="field">
-                        <div class="control">
-                            <button class="btn btn-success" type="submit">Valider</button>
+                        <div class="mb-3 mx-auto">
+                            <label for="image" class="fs-4 mt-3">Image : </label>
+                            <input type="file" name="image" class="form-control">
                         </div>
-                    </div>
-                </form>
+                        {{-- Mettre un select --}}
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="categorie">
+                            <option selected>Choisir la catégorie de document</option>
+                            <option value="certificat_medical">Certificat médical</option>
+                            <option value="questionnaire">Questionnaire</option>
+                            <option value="compte_rendu">Compte rendu</option>
+                        </select>
+
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="btn btn-success" type="submit">Valider</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    {{-- @endcan --}}
+    @endcan
     <!----------------------------------------------------------LES ACTUALITES------------------------------------------->
     <!--LA LISTE DES ACTUALITES-->
     <div class="container" id="actualites" style="padding-top: 5%;display: none">
@@ -420,15 +453,25 @@
                                 <input type="submit" class="btn btn-primary" value="Détails de l'actualité">
                             </a>
 
-                            {{-- @can('delete', $actualite)  --}}
-                            <!--SUPPRIMER UNE ACTUALITE-->
-                            <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
-                                <!-- CSRF token -->
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
-                            </form>
-                            {{-- @endcan --}}
+                            @can('update', $actualite)
+                                <!--MODIFIER L'ACTUALITE-->
+                                <td>
+                                    <!--LIEN POUR ALLER SUR LA VIEW MODIFIER L'ACTUALITE-->
+                                    <a href="{{ route('actualite.edit', $actualite) }}">
+                                        <button class="btn btn-success">Modifier l'actualité</button>
+                                    </a>
+                                </td>
+                            @endcan
+
+                            @can('delete', $actualite)
+                                <!--SUPPRIMER UNE ACTUALITE-->
+                                <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
+                                    <!-- CSRF token -->
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
+                                </form>
+                            @endcan
                         </div>
                     </div>
 
@@ -442,15 +485,25 @@
                                 <input type="submit" class="btn btn-primary" value="Détails de l'actualité">
                             </a>
 
-                            {{-- @can('delete', $actualite)  --}}
-                            <!--SUPPRIMER UNE ACTUALITE-->
-                            <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
-                                <!-- CSRF token -->
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
-                            </form>
-                            {{-- @endcan --}}
+                            @can('update', $actualite)
+                                <!--MODIFIER L'ACTUALITE-->
+                                <td>
+                                    <!--LIEN POUR ALLER SUR LA VIEW MODIFIER L'ACTUALITE-->
+                                    <a href="{{ route('actualite.edit', $actualite) }}">
+                                        <button class="btn btn-success">Modifier l'actualité</button>
+                                    </a>
+                                </td>
+                            @endcan
+
+                            @can('delete', $actualite)
+                                <!--SUPPRIMER UNE ACTUALITE-->
+                                <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
+                                    <!-- CSRF token -->
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
+                                </form>
+                            @endcan
                         </div>
                     </div>
 
@@ -459,21 +512,31 @@
                         <img class="card-img" src="{{ asset("images/actualites/$actualite->image") }}" alt="actualites">
                         <div class="card-body">
                             <h5 class="card-title">{{ $actualite->titre }}</h5>
-                            <p class="card-text">{{ $actualite->texte }}</p>
+                            <p class="card-text">{{ $actualite->content }}</p>
                             <p class="card-text"><small class="text-muted">{{ $actualite->created_at }}</small></p>
                             <a href="{{ route('actualite.show', $actualite) }}">
                                 <input type="submit" class="btn btn-primary" value="Détails de l'actualité">
                             </a>
 
-                            {{-- @can('delete', $actualite)  --}}
-                            <!--SUPPRIMER UNE ACTUALITE-->
-                            <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
-                                <!-- CSRF token -->
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
-                            </form>
-                            {{-- @endcan --}}
+                            @can('update', $actualite)
+                                <!--MODIFIER L'ACTUALITE-->
+                                <td>
+                                    <!--LIEN POUR ALLER SUR LA VIEW MODIFIER L'ACTUALITE-->
+                                    <a href="{{ route('actualite.edit', $actualite) }}">
+                                        <button class="btn btn-success">Modifier l'actualité</button>
+                                    </a>
+                                </td>
+                            @endcan
+
+                            @can('delete', $actualite)
+                                <!--SUPPRIMER UNE ACTUALITE-->
+                                <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
+                                    <!-- CSRF token -->
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
+                                </form>
+                            @endcan
                         </div>
                     </div>
 
@@ -484,7 +547,6 @@
     </div>
 
     @can('create', $actualite)
-        ;
         <!--CREER UNE NOUVELLE ACTUALITE-->
         <div class="container" id="creer_actualite" style="padding-top: 5%;display: none">
             <div class="row text-center">

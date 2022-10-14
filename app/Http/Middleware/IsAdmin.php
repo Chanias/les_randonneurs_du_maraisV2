@@ -20,17 +20,5 @@ class IsAdmin
             return $next($request);
         }
         return $next($request);
-        if (Auth::user() && Auth::user()->role_id == 4) {
-            return $next($request);
-        }
-        return $next($request);
-        if (Auth::user() && Auth::user()->role_id == 3) {
-            return $next($request);
-        }
-        return $next($request);
-        if (Auth::user() && Auth::user()->role_id == 2) {
-            return $next($request);
-        }
-        return $next($request);
     }
 }

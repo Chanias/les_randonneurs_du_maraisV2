@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actualite;
 use Auth;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 class ActualiteController extends Controller
@@ -40,7 +41,7 @@ class ActualiteController extends Controller
         $this->authorize('create', $actualite);
         $request->validate([
             'titre'=> 'required',
-            'texte'=> 'required',
+            'content'=> 'required',
             'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         // on donne un nom à l'image : timestamp en temps unix + extension
@@ -89,9 +90,10 @@ class ActualiteController extends Controller
         $this->authorize('update', $actualite);
         $request->validate([
             'titre'=> 'required',
-            'texte'=> 'required',
+            'content'=> 'required',
             'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+       
         // on donne un nom à l'image : timestamp en temps unix + extension
         $imageName = time() . '.' . $request->image->extension();
 

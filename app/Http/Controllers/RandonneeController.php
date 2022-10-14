@@ -43,10 +43,10 @@ class RandonneeController extends Controller
             'nom' => 'required',
             'commentaires' => 'required',
             'kilometres' => 'required',
-            'lien_photos' => 'nullable'
+            
         ]);
 
-       $this->authorize('create', $randonnee);
+     
 
         // sauvegarde dans la base de données la nouvelle randonnée 
         $randonnee->create($request->all());

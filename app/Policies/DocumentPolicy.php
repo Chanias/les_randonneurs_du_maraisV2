@@ -27,6 +27,7 @@ class DocumentPolicy
      */
     public function viewAny(User $user)
     {
+
     }
 
     /**
@@ -38,11 +39,8 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document)
     {
-        switch ($user->role) {
-            case 'Administrateur':
-                return true;
-            default:
-                return false;
+        if($user->isAdmin() || $user->isBureau()){
+            return true;
         }
     }
 
@@ -54,6 +52,9 @@ class DocumentPolicy
      */
     public function create(User $user)
     {
+        if($user->isAdmin() || $user->isBureau() || $user->isAnimateur()){
+            return true;
+        }
     }
 
     /**
@@ -65,7 +66,8 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document)
     {
-        //
+        // return $user->id === $document->user_id &&
+        // $user->canUpdateCategory($category);
     }
 
     /**
@@ -77,6 +79,9 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document)
     {
+        if($user -> role !='Administrateur'){
+            return false;
+        }
     }
 
     /**

@@ -58,6 +58,9 @@
                                 <a class="nav-link"href="{{ route('contact.index') }}">Contact</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link"href="{{ route('document.index') }}">Comptes rendus</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link"href="{{ route('admin.index') }}">Administration</a>
                             </li>
                         @else 
@@ -69,6 +72,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"href="{{ route('document.index') }}">Comptes rendus</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"href="{{ route('contact.index') }}">Contact</a>
@@ -93,7 +99,7 @@
                         @endif
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="compte">Mon compte</a>
+                            <a class="nav-link" href="{{route('compte')}}">Mon compte</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

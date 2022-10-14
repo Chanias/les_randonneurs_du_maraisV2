@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('actualites', function (Blueprint $table) {
             $table->id();
             $table->string('titre',50);
-            $table->text('texte');
+            $table->text('content');
             $table->string('image',191);
             $table->timestamps();
         });

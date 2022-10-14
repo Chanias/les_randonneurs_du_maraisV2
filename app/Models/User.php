@@ -73,4 +73,22 @@ class User extends Authenticatable
             return true;
         }
     }
+    public function isBureau()
+    {
+        if ($this-> role->role=='Bureau'){
+            return true;
+        }
+    }
+    public function isAnimateur()
+    {
+        if ($this-> role->role=='Animateur'){
+            return true;
+        }
+    }
+    public function isBaliseur()
+    {
+        if ($this-> role->role=='Baliseur'){
+            return true;
+        }
+    }
 }

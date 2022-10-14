@@ -11,7 +11,7 @@ class Actualite extends Model
     
     protected $fillable = [
         'titre',
-        'texte',
+        'content',
         'image'
      ];
 }

@@ -49,9 +49,9 @@ class RandonneePolicy
     public function create(User $user)
     {
        
-        // if ($this-> role->role=='Bureau'){
-        //     return true;
-        // }
+        if($user -> isBureau()){
+            return true;
+        }
     }
 
     /**
@@ -61,11 +61,11 @@ class RandonneePolicy
      * @param  \App\Models\Randonnee  $randonnee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Randonnee $model)
+    public function update(User $user)
     {
-        // if ($this-> role->role=='Bureau'){
-        //     return true;
-        // }
+        if($user -> isBureau()){
+            return true;
+        }
     }
 
     /**
@@ -75,11 +75,11 @@ class RandonneePolicy
      * @param  \App\Models\Randonnee  $randonnee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Randonnee $randonnee)
+    public function delete(User $user)
     {
-        // if ($this-> role->role=='Bureau'){
-        //     return true;
-        // }
+        if($user -> isBureau()){
+            return true;
+        }
     }
 
     /**

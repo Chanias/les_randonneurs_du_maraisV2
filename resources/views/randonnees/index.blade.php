@@ -103,7 +103,7 @@
     </section>
 
 
- <!------------------------------------------LES RANDONNEES------------------------------------------->
+    <!------------------------------------------LES RANDONNEES------------------------------------------->
     @if (auth()->check())
         <!--LISTE RANDONNEES-->
         <div class="container">
@@ -121,6 +121,7 @@
                             <th>Commentaire</th>
                             <th>Nombre de kilomètres</th>
                             <th>Lien des photos</th>
+                            <th>La carte</th>
                     </thead>
                     <tbody>
                         @foreach ($randonnees as $randonnee)
@@ -133,6 +134,15 @@
                                 <td>{{ $randonnee->commentaires }}</td>
                                 <td>{{ $randonnee->kilometres }}</td>
                                 <td>{{ $randonnee->lien_photos }}</td>
+                                @if ($randonnee->carte)
+                                @php
+                                    $nom_fichier = $randonnee->carte->nom_fichier;
+                                    
+                                @endphp
+                                <td><a href="{{ asset("images/cartes/$nom_fichier") }}">Télécharger </a></td>
+                            @else
+                                <td>pas de carte disponible pour cette randonnée</td>
+                            @endif
                             </tr>
                         @endforeach
                     </tbody>

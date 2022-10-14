@@ -14,18 +14,20 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('admin-group');
+        return $this->middleware('admin');
     }
 
     public function index()
     {
+       
         // ON RECUPERE TOUT CE QUE L'ADMIN A BESOIN DE VOIR SUR SA PAGE
         $users = User::orderBy('nom', 'asc')->paginate(10);
-        // FAIRE UN EAGER LOADING POUR RECUP LES CARTES LIES AUX RANDOS
         $randonnees = Randonnee::orderBy('date','desc')->paginate(5);
         $documents=Document::all();
         $notifications=Notification::all();
         $actualites=Actualite::all();
+
+       
 
         return view('admin.index', compact('users', 'randonnees','documents','notifications', 'actualites'));
     }

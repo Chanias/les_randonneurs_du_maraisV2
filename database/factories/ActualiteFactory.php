@@ -18,7 +18,7 @@ class ActualiteFactory extends Factory
     {
         return [
             'titre'=>$this->faker->title(),
-            'texte'=>$this->faker->paragraph(2, true),
+            'content'=>$this->faker->paragraph(2, true),
             'image'=>'foret.jpg'
         ];
     }

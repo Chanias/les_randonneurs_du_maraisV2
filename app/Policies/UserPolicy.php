@@ -34,12 +34,7 @@ class UserPolicy
      */
     public function view(User $user)
     {
-        switch ($user->role){
-            case 'Administrateur':
-                return true;
-            default:
-            return false;
-}
+        // 
     }
    
     
@@ -51,12 +46,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        switch ($user->role){
-            case 'Administrateur':
-                return true;
-            default:
-            return false;
-}
+        //
     }
 
     /**
@@ -67,12 +57,7 @@ class UserPolicy
      */
     public function update(User $user)
     {
-        switch ($user->role){
-            case 'Administrateur':
-                return true;
-            default:
-            return false;
-}
+       //
     }
 
     /**
@@ -83,14 +68,7 @@ class UserPolicy
      */
     public function delete(User $user)
     {
-        
-        switch ($user->role){
-            case 'Administrateur':
-                return true;
-            default:
-            return false;
-}
-    
+        //   
     }
     /**
      * Determine whether the user can restore the model.

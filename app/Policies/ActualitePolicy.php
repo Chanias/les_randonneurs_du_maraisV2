@@ -48,9 +48,9 @@ class ActualitePolicy
      */
     public function create(User $user)
     {
-        // if ($this-> role->role=='Bureau'){
-        //     return true;
-        // }
+        if($user -> isBureau()){
+            return true;
+        }
     }
 
     /**
@@ -60,9 +60,9 @@ class ActualitePolicy
      * @param  \App\Models\Actualite  $actualite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
+    public function update(User $user, Actualite $model)
     {
-        if ($this-> role->role=='Bureau'){
+        if($user -> isBureau()){
             return true;
         }
     }
@@ -74,9 +74,9 @@ class ActualitePolicy
      * @param  \App\Models\Actualite  $actualite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user)
+    public function delete(User $user, Actualite $model)
     {
-        if ($this-> role->role=='Bureau'){
+        if($user -> isBureau()){
             return true;
         }
         
