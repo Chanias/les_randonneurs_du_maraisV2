@@ -3,15 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Auth;
-use Illuminate\Support\Facades\Hash;
-use Str;
-
-use Illuminate\Validation\Rules\Password;
-use App\Models\Message;
 use App\Models\Randonnee;
-
 
 class RandonneeController extends Controller
 {
@@ -22,7 +14,7 @@ class RandonneeController extends Controller
      */
     public function index()
     {
-       $randonnees=Randonnee::all();
+        $randonnees = Randonnee::all();
         return view('randonnees.index', compact('randonnees'));
     }
     /**
@@ -43,10 +35,7 @@ class RandonneeController extends Controller
             'nom' => 'required',
             'commentaires' => 'required',
             'kilometres' => 'required',
-            
         ]);
-
-     
 
         // sauvegarde dans la base de données la nouvelle randonnée 
         $randonnee->create($request->all());
@@ -104,7 +93,7 @@ class RandonneeController extends Controller
     public function destroy(Randonnee $randonnee)
     {
         $this->authorize('delete', $randonnee);
-        
+
         $randonnee->delete();
         return redirect()->route('admin.index')->with('message', 'La randonnée a bien été supprimé...');
     }

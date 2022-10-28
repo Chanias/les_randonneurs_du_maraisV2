@@ -14,20 +14,17 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('admin');
+         return $this->middleware('isActiveMember');
     }
 
     public function index()
     {
-       
         // ON RECUPERE TOUT CE QUE L'ADMIN A BESOIN DE VOIR SUR SA PAGE
-        $users = User::orderBy('nom', 'asc')->paginate(10);
-        $randonnees = Randonnee::orderBy('date','desc')->paginate(5);
+        $users = User::orderBy('nom', 'asc')->paginate(10, ['*'], 'users');
+        $randonnees = Randonnee::orderBy('date','desc')->paginate(10, ['*'], 'randonnees');
         $documents=Document::all();
         $notifications=Notification::all();
         $actualites=Actualite::all();
-
-       
 
         return view('admin.index', compact('users', 'randonnees','documents','notifications', 'actualites'));
     }

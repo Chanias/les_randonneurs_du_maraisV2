@@ -12,7 +12,8 @@
         @foreach ($actualites as $actualite)
             <div class="card-group">
                 <div class="card">
-                    <img class="card-img" src="{{ asset("images/actualites/$actualite->image") }}" alt="actualites" style="width:18rem">
+                    <img class="card-img" src="{{ asset("images/actualites/$actualite->image") }}" alt="actualites"
+                        style="width:18rem">
                     <div class="card-body">
                         <h5 class="card-title">{{ $actualite->titre }}</h5>
                         <p class="card-text">{{ $actualite->content }}</p>
@@ -23,7 +24,7 @@
                     </div>
                 </div>
 
-                
+
 
 
             </div>

@@ -151,7 +151,9 @@ footer img{
     margin: 3em;
 }
 
-
+#sorties h4{
+    color: aliceblue;
+}
 .sorties-details{
     text-align: center;
 }
@@ -237,9 +239,7 @@ blockquote p::after {
 .card-group{
     padding-bottom: 2em;
 }
-.paginate{
-    text-align: center;
-}
+
 /*MEDIA SCREEN*/
 @media screen and (max-width: 1000px) {
     .details{

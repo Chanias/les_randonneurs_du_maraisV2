@@ -55,7 +55,9 @@ Route::resource('notification', App\Http\Controllers\NotificationController::cla
 //-----------------------------ACTUALITES-------------------------------
 Route::resource('actualite', App\Http\Controllers\ActualiteController::class);
 
+Route::POST('reglementAccepte', [App\Http\Controllers\Auth\RegisterController::class,'reglementAccepte'])->name('reglementAccepte');
 
+Route::get('NoticeJointe', [App\Http\Controllers\NoticeJointeController::class, 'NoticeJointe'])->name('NoticeJointe');
 
 
 

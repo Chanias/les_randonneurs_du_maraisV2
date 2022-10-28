@@ -42,14 +42,7 @@ class CartePolicy
      */
     public function view(User $user, Carte $carte)
     {
-        switch ($user->role) {
-            case 'Animateur':
-                return true;
-            case 'Baliseur':
-                return true;
-            default:
-                return false;
-        }
+    
     }
 
     /**
@@ -60,13 +53,8 @@ class CartePolicy
      */
     public function create(User $user)
     {
-        switch ($user->role) {
-            case 'Animateur':
-                return true;
-            case 'Baliseur':
-                return true;
-            default:
-                return false;
+        if ($user->role->role=='Baliseur' || $user->role->role=='Animateur') {
+            return true;
         }
     }
 
@@ -79,13 +67,8 @@ class CartePolicy
      */
     public function update(User $user, Carte $carte)
     {
-        switch ($user->role) {
-            case 'Animateur':
-                return true;
-            case 'Baliseur':
-                return true;
-            default:
-                return false;
+        if ($user->role->role=='Baliseur' || $user->role->role=='Animateur') {
+            return true;
         }
     }
 
@@ -98,13 +81,8 @@ class CartePolicy
      */
     public function delete(User $user, Carte $carte)
     {
-        switch ($user->role) {
-            case 'Animateur':
-                return true;
-            case 'Baliseur':
-                return true;
-            default:
-                return false;
+        if ($user->role->role=='Baliseur' || $user->role->role=='Animateur') {
+            return true;
         }
     }
 

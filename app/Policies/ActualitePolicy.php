@@ -37,7 +37,7 @@ class ActualitePolicy
      */
     public function view(User $user, Actualite $actualite)
     {
-    
+    //
     }
 
     /**
@@ -48,7 +48,7 @@ class ActualitePolicy
      */
     public function create(User $user)
     {
-        if($user -> isBureau()){
+        if ($user->role->role=='Bureau') {
             return true;
         }
     }
@@ -62,7 +62,7 @@ class ActualitePolicy
      */
     public function update(User $user, Actualite $model)
     {
-        if($user -> isBureau()){
+        if ($user->role->role=='Bureau') {
             return true;
         }
     }
@@ -76,10 +76,9 @@ class ActualitePolicy
      */
     public function delete(User $user, Actualite $model)
     {
-        if($user -> isBureau()){
+        if ($user->role->role=='Bureau') {
             return true;
         }
-        
     }
 
     /**

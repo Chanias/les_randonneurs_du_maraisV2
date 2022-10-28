@@ -150,7 +150,9 @@ footer img{
     margin: 3em;
 }
 
-
+#sorties h4{
+    color: aliceblue;
+}
 .sorties-details{
     text-align: center;
 }

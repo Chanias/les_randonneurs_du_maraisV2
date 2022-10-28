@@ -11,11 +11,12 @@ class RandonneePolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user){
-        if($user -> isAdmin()){
+    public function before(User $user)
+    {
+        if ($user->isAdmin()) {
             return true;
         }
-       }
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -37,7 +38,7 @@ class RandonneePolicy
      */
     public function view(User $user, Randonnee $randonnee)
     {
-       
+        //
     }
 
     /**
@@ -48,8 +49,7 @@ class RandonneePolicy
      */
     public function create(User $user)
     {
-       
-        if($user -> isBureau()){
+        if ($user->role->role == 'Bureau') {
             return true;
         }
     }
@@ -63,7 +63,7 @@ class RandonneePolicy
      */
     public function update(User $user)
     {
-        if($user -> isBureau()){
+        if ($user->role->role == 'Bureau') {
             return true;
         }
     }
@@ -77,7 +77,7 @@ class RandonneePolicy
      */
     public function delete(User $user)
     {
-        if($user -> isBureau()){
+        if ($user->role->role == 'Bureau') {
             return true;
         }
     }

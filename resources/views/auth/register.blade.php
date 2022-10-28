@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        $(document).on('click', '#checkbox', function() {
+            console.log("Checkbox clicked");
+            let value = "";
+            if ($(this).is(':checked') == true) {
+                value = $(this).attr('data-sid');
+                console.log(value);
+            } else if ($(this).is(':checked') == false) {
+                // value = $(this).attr('value', 'false1').val();
+                console.log("CAN'T SELECT CHECKBOX");
+            }
+
+        })
+    </script>
     <div class="container" id="inscription">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -287,11 +301,7 @@
                                                 <div class="col-md-12">
                                                     <p class="text-center">J'ai pris connaissance du règlement intérieur et
                                                         l'accepte</p>
-                                                    <div class="form-check text-center">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"style="margin-left:45%; margin-right:auto;"
-                                                            </div>
-                                                    </div>
+
 
                                                 </div>
                                             </div>
@@ -299,8 +309,15 @@
                                 </div>
 
                                 <div class="modal-footer text-center mx-auto">
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="">
+                                    <form action="{{ route('reglementAccepte') }}" value="Save" method="POST">
+                                        @csrf
+                                        <div class="form-check text-center">
+                                            <input class="form-check-input" type="checkbox" name="checkbox"
+                                                id="flexCheckDefault"style="margin-left:45%; margin-right:auto;"
+                                                @if (session()->has('reglementAccepte') && session()->get('reglementAccepte') == 'on') checked @endif
+                                                >
+                                        </div>
+
                                         <button type="submit" class="btn btn-primary text-center mx-auto">Retour à
                                             l'inscription</button>
                                     </form>
@@ -480,7 +497,7 @@
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong> {{$message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
@@ -496,15 +513,27 @@
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p>L'association " Les Randonneurs du Marais Sud Vendée" traite les données recueillies pour la gestion d'une association.
 
-                            <!--BOUTON ENREGISTRER-->
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Enregistrer') }}
-                                    </button>
+                                            Pour en savoir plus sur la gestion de vos données personnelles et pour exercer vos droits, reportez-vous à la notice ci-jointe.</p>
+                                    <a href="{{route('NoticeJointe')}}" class="btn-1">Notice jointe</a>
+                                        </div>
                                 </div>
                             </div>
+
+                            <!--BOUTON ENREGISTRER-->
+                            @if (Session::get('reglementAccepte'))
+                                <div class="row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Enregistrer') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>

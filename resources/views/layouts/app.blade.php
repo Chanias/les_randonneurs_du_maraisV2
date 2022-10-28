@@ -43,7 +43,7 @@
 
                         @if (Auth::user() && Auth::user()->role_id != 1)
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/home">A propos</a>
+                                <a class="nav-link active" aria-current="page" href="/home">Accueil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('randonnee.index') }}">Randonnées</a>
@@ -65,16 +65,16 @@
                             </li>
                         @else 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/home">A propos</a>
+                                <a class="nav-link active" aria-current="page" href="/home">Accueil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('randonnee.index') }}">Randonnées</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
+                                <a class="nav-link"href="{{ route('actualite.index') }}">Actualités</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"href="{{ route('document.index') }}">Comptes rendus</a>
+                                <a class="nav-link" href="{{ route('photos.index') }}">Souvenirs</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"href="{{ route('contact.index') }}">Contact</a>
@@ -88,13 +88,13 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Espace adhérents') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Nous rejoindre') }}</a>
                             </li>
                         @endif
                     @else

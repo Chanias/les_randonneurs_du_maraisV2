@@ -25,9 +25,10 @@ class User extends Authenticatable
         'num_telephone_portable',
         'email',
         'password',
+        'role_id',
     ];
 
-//on charge automatique le role du user
+    //on charge automatique le role du user
     protected $with = [
         'role'
     ];
@@ -69,25 +70,7 @@ class User extends Authenticatable
     }
     public function isAdmin()
     {
-        if ($this-> role->role=='Administrateur'){
-            return true;
-        }
-    }
-    public function isBureau()
-    {
-        if ($this-> role->role=='Bureau'){
-            return true;
-        }
-    }
-    public function isAnimateur()
-    {
-        if ($this-> role->role=='Animateur'){
-            return true;
-        }
-    }
-    public function isBaliseur()
-    {
-        if ($this-> role->role=='Baliseur'){
+        if ($this->role->role == 'Administrateur') {
             return true;
         }
     }

@@ -37,11 +37,8 @@ class BalisagePolicy
      */
     public function view(User $user)
     {
-        switch ($user->role) {
-            case 'Membre simple':
-                return false;
-            default:
-                return true;
+        if ($user->role->role=='Bureau') {
+            return true;
         }
     }
 

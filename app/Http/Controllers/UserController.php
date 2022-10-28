@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+      //
     }
     public function compte()
     {
@@ -83,7 +83,6 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        
         $request->validate([
             'email' => 'nullable|min:10|max:50',
             'num_telephone_fixe' => 'nullable|max:14',
@@ -100,6 +99,8 @@ class UserController extends Controller
 
         return redirect()->back()->with('message', 'Le profil a bien été modifié');
     }
+
+
     public function updatePassword(Request $request)
     {
         $request->validate([

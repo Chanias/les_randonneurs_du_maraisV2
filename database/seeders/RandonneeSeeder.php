@@ -24,8 +24,8 @@ class RandonneeSeeder extends Seeder
             'commentaires'=>'Autour de la Douve – Côté Mouzeuil',
             'kilometres'=>13 ,
             'lien_photos'=>'dqdsfsef',
-            
         ]);
+        
         Randonnee::create([
             'date'=>'2022-06-04', 
             'heure_rdv'=>'7h30', 

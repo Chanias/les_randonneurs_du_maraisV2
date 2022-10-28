@@ -27,7 +27,6 @@ class DocumentPolicy
      */
     public function viewAny(User $user)
     {
-
     }
 
     /**
@@ -39,7 +38,7 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document)
     {
-        if($user->isAdmin() || $user->isBureau()){
+        if ($user->role->role == 'Bureau' && $document->categorie == 'compte_rendu') {
             return true;
         }
     }
@@ -52,7 +51,7 @@ class DocumentPolicy
      */
     public function create(User $user)
     {
-        if($user->isAdmin() || $user->isBureau() || $user->isAnimateur()){
+        if ($user->role->role == 'Bureau' || $user->role->role == 'Administrateur' || $user->role->role == 'Animateur') {
             return true;
         }
     }
@@ -79,7 +78,7 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document)
     {
-        if($user -> role !='Administrateur'){
+        if ($user->role != 'Administrateur') {
             return false;
         }
     }

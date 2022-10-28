@@ -7,16 +7,18 @@
 @section('content')
     <script>
         let nomsTableaux = ['liste_adherents', 'liste_documents', 'liste_randonnees', 'ajouter_document', 'creer_randonnee',
-            'creer_actualite', 'actualites', 'balisage']
+            'creer_actualite', 'actualites', 'balisage'
+        ]
 
         function showElement(id) {
-           
+
             nomsTableaux.forEach(element => { // nom du tableau 
-                let objet =document.getElementById(element)
-                if (objet){
-                    objet.style.display='none'
+                let objet = document.getElementById(element)
+                if (objet) {
+                    // objet.style.display = 'none'
+                    document.getElementById(element).style.display = 'none'
                 }
-                // document.getElementById(element).style.display = 'none'
+                
             });
             let element = document.getElementById(id)
             if (element.style.display == 'block') {
@@ -24,39 +26,41 @@
             } else {
                 element.style.display = 'block'
             }
+           
         }
+       
     </script>
 
     <div class="container text-center">
         <div class="row text-center">
             <h2 class="mb-4">Bienvenue sur votre interface d'administration</h2>
         </div>
-        @can('create', App\Models\User::class)
-        <button class="btn btn-primary btn-lg" onclick="showElement('liste_adherents')">Liste des adhérents</button>
+        {{-- ON CACHE LES BOUTONS POUR CEUX QUI N'ONT PAS ACCES --}}
+        @can('create', App\Models\User::class) 
+            <button class="btn btn-primary btn-lg" onclick="showElement('liste_adherents')">Liste des adhérents</button>
         @endcan
         @can('create', App\Models\Document::class)
-        <button class="btn btn-primary btn-lg" onclick="showElement('liste_documents')">Liste des
-            documents</button>
-            @endcan
+            <button class="btn btn-primary btn-lg" onclick="showElement('liste_documents')">Liste des
+                documents</button>
+        @endcan
         <button class="btn btn-primary btn-lg" onclick="showElement('liste_randonnees')">Liste des randonnées</button>
-
     </div>
+
     <br>
+
     <div class="container text-center">
         @can('create', App\Models\Document::class)
-        <button class="btn btn-success btn-lg" onclick="showElement('ajouter_document')">Ajouter un document</button>
+            <button class="btn btn-success btn-lg" onclick="showElement('ajouter_document')">Ajouter un document</button>
         @endcan
-
         <button class="btn btn-success btn-lg" onclick="showElement('creer_randonnee')">Créer une
             randonnee</button>
-
-       @can('create', App\Models\Actualite::class)
-        <button class="btn btn-success btn-lg" onclick="showElement('creer_actualite')">Créer une actualité</button>
+        @can('create', App\Models\Actualite::class)
+            <button class="btn btn-success btn-lg" onclick="showElement('creer_actualite')">Créer une actualité</button>
         @endcan
     </div>
+    
     <br>
     <div class="container text-center">
-        {{-- <button class="btn btn-primary btn-lg" onclick="showElement('notifications')">Mes notifications</button> --}}
         <button class="btn btn-primary btn-lg" onclick="showElement('actualites')">Les actualités</button>
         <button class="btn btn-primary btn-lg" onclick="showElement('balisage')">Le balisage</button>
 
@@ -115,8 +119,9 @@
                     </tbody>
     @endforeach
     </table>
-    </div>
     {{ $users->links() }}
+    </div>
+    
 
     </div>
     @endif
@@ -205,10 +210,10 @@
                         <th>Nombre de kilomètres</th>
                         <th>Lien des photos</th>
                         <th>La carte</th>
-
-                        <th>Modifier</th>
-                        <th>Supprimer</th>
-
+                        @can('create', App\Models\Randonnee::class)
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+                        @endcan
                     </tr>
                 </thead>
 
@@ -416,7 +421,8 @@
                             <input type="file" name="image" class="form-control">
                         </div>
                         {{-- Mettre un select --}}
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="categorie">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            name="categorie">
                             <option selected>Choisir la catégorie de document</option>
                             <option value="certificat_medical">Certificat médical</option>
                             <option value="questionnaire">Questionnaire</option>

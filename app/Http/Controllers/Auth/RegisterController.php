@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
@@ -24,7 +26,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-    
+
 
     /**
      * Where to redirect users after registration.
@@ -58,8 +60,8 @@ class RegisterController extends Controller
             'adresse' => ['required', 'string', 'max:255'],
             'code_postal' => ['required', 'string', 'max:5'],
             'ville' => ['required', 'string', 'max:255'],
-            'num_telephone_fixe' => ['nullable','string', 'max:14'],
-            'num_telephone_portable' => ['nullable','string', 'max:14'],
+            'num_telephone_fixe' => ['nullable', 'string', 'max:14'],
+            'num_telephone_portable' => ['nullable', 'string', 'max:14'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -89,5 +91,17 @@ class RegisterController extends Controller
             'code_postal' => $data['code_postal'],
             'ville' => $data['ville'],
         ]);
+    }
+
+    
+    protected function reglementAccepte(Request $request)
+    {
+        if ($request->checkbox == 'on') {
+            session()->put('reglementAccepte', true); // pour stocker l'acceptation de la checkbox dans la session
+            return view('auth.register')->with('message', 'La case du réglement a bien été cochée...');
+        } else {
+            session()->put('reglementAccepte', false);
+            return redirect::back()->withErrors(['Attention !', 'Vous n\'avez pas coché la case']);
+        }
     }
 }
