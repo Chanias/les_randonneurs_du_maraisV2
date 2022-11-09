@@ -36,12 +36,12 @@ Route::resource('randonnee', App\Http\Controllers\RandonneeController::class);
 //-----------------------------PHOTOS-------------------------------
 Route::resource('photos', App\Http\Controllers\PhotoController::class);
 
-//-----------------------------COMPTE RENDU -------------------------------
-// Route::resource('compteRendu', App\Http\Controllers\CompteRenduController::class);
+
 
 //-----------------------------DOCUMENTS-------------------------------
 Route::resource('document', App\Http\Controllers\DocumentController::class)->only(['index',
-    'store','destroy']);;
+    'store','destroy']);
+
 
 //-----------------------------CONTACT-------------------------------
 Route::resource('contact', App\Http\Controllers\ContactController::class);
@@ -57,8 +57,10 @@ Route::resource('actualite', App\Http\Controllers\ActualiteController::class);
 
 Route::POST('reglementAccepte', [App\Http\Controllers\Auth\RegisterController::class,'reglementAccepte'])->name('reglementAccepte');
 
-Route::get('NoticeJointe', [App\Http\Controllers\NoticeJointeController::class, 'NoticeJointe'])->name('NoticeJointe');
-
+//MENTIONS LEGALES POLITIQUE DE CONFIDENTIOALITEE ET REGLEMENT INTERIEUR
+Route::get('reglement_interieur', [App\Http\Controllers\HomeController::class, 'reglement_interieur'])->name('reglement_interieur');
+Route::get('politique_confidentialite', [App\Http\Controllers\HomeController::class, 'politique_confidentialite'])->name('politique_confidentialite');
+Route::get('mentions_legales', [App\Http\Controllers\HomeController::class, 'mentions_legales'])->name('mentions_legales');
 
 
 

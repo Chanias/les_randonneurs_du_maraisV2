@@ -14,5 +14,9 @@ class Carte extends Model
         'nom_fichier'
        
     ];
+    public function randonnee()
+    {
+        return $this->belongsTo(Randonnee::class);
+    }
 
 }

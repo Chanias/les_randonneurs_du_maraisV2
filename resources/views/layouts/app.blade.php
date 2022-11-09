@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+  
     <!-- Fonts -->
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,7 +40,6 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                        
-
                         @if (Auth::user() && Auth::user()->role_id != 1)
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/home">Accueil</a>
@@ -165,9 +164,9 @@
             </div>
 
             <div class="details_2">
-                <button type="button" class="btn-1">Copyright<a href="#"></a></button>
-                <button type="button" class="btn-1">Mentions Légales<a href="#"></a></button>
-                <button type="button" class="btn-1">Politique de confidentialité<a href="#"></a></button>
+                <a href="{{ route('reglement_interieur') }}" class="btn-1" target="_blank">Réglement intérieur</a>
+                <a href="{{ route('mentions_legales') }}" class="btn-1" target="_blank">Mentions légales</a>
+                <a href="{{ route('politique_confidentialite') }}" class="btn-1" target="_blank">Politiques de confidentialités</a>
             </div>
 
             <div class="copyright">

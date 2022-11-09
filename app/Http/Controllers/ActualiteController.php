@@ -16,8 +16,8 @@ class ActualiteController extends Controller
      */
     public function index()
     {
-        $actualites=Actualite::all();
-      return view('actualites.index', compact('actualites'));
+        $actualites = Actualite::all();
+        return view('actualites.index', compact('actualites'));
     }
 
     /**
@@ -40,9 +40,9 @@ class ActualiteController extends Controller
     {
         $this->authorize('create', $actualite);
         $request->validate([
-            'titre'=> 'required',
-            'content'=> 'required',
-            'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'titre' => 'required',
+            'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         // on donne un nom à l'image : timestamp en temps unix + extension
         $imageName = time() . '.' . $request->image->extension();
@@ -89,11 +89,11 @@ class ActualiteController extends Controller
     {
         $this->authorize('update', $actualite);
         $request->validate([
-            'titre'=> 'required',
-            'content'=> 'required',
-            'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'titre' => 'required',
+            'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-       
+
         // on donne un nom à l'image : timestamp en temps unix + extension
         $imageName = time() . '.' . $request->image->extension();
 

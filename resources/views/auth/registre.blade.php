@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    NOTICE JOINTE RGPD
+    REGISTRE RGPD
 @endsection
 
 @section('content')

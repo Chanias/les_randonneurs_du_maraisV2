@@ -14,6 +14,6 @@ class Document extends Model
         'nom',
         'image',
         'categorie'
-       
     ];
+
 }

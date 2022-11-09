@@ -9,7 +9,8 @@ class DocumentController extends Controller
 {
     public function index()
     {
-        $documents = Document::all();
+        // $documents = Document::where('categorie', 'compte_rendu')->get();
+       
         return view('documents.index', compact('documents'));
     }
     /**
@@ -20,7 +21,8 @@ class DocumentController extends Controller
      */
     public function store(Request $request, Document $document)
     {
-        $this->authorize('create', [$document, $request->category]);
+       $this->authorize('create', $document);
+      
         $request->validate([
             'nom' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,tiff,svg|max:2048',
@@ -34,11 +36,9 @@ class DocumentController extends Controller
         $request->image->move(public_path('images/documents'), $imageName);
         $document = new Document;
 
-
-
         $document->image = $imageName;
         $document->nom = $request->nom;
-        $document->categorie = $request->categorie;
+       
         $document->save();
 
         return redirect()->route('admin.index')->with('message', 'Le document a bien été ajouté...');
@@ -51,7 +51,7 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-        $this->authorize('delete', $document);
+       // $this->authorize('delete', $document);
         $document->delete();
         return redirect()->route('admin.index')->with('message', 'Le document a bien été supprimé...');
     }

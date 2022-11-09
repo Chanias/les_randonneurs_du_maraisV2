@@ -22,10 +22,13 @@ class Randonnee extends Model
 
     // ON CHARGE DIRECTEMENT A LA CREATION D'UNE RANDONNEE LES INFORMATIONS DES CARTES
     protected $with=[
-        'carte'
+        'carte',
+        // 'animateur'
     ];
+ 
+
     // CREATION DE 2 EAGER LOADING POUR LIER LA TABLE RANDONNEE AVEC LES INFORMATIONS DE LA TABLE
-    // CARTE ET DE LA TABLE ANIMATEUR
+    // CARTE ET LA TABLE ANIMATEUR
 
     public function carte(){
         return $this->hasOne(Carte::class);

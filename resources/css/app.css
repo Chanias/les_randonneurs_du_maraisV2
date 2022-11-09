@@ -235,8 +235,8 @@ blockquote p::after {
 }
  
 /*PAGE ADMIN*/
-.card-group{
-    padding-bottom: 2em;
+#actualites img{
+    width: 50%;
 }
 
 /*MEDIA SCREEN*/

@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Document;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Auth;
+
 
 class DocumentPolicy
 {
@@ -17,7 +17,6 @@ class DocumentPolicy
             return true;
         }
     }
-
 
     /**
      * Determine whether the user can view any models.
@@ -36,11 +35,11 @@ class DocumentPolicy
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Document $document)
+    public function view(User $user, Document $document )
     {
-        if ($user->role->role == 'Bureau' && $document->categorie == 'compte_rendu') {
+        if ($user->role->role == 'Bureau' && $document->categorie == 'compte_rendu' ) 
             return true;
-        }
+            // 
     }
 
     /**
@@ -51,7 +50,7 @@ class DocumentPolicy
      */
     public function create(User $user)
     {
-        if ($user->role->role == 'Bureau' || $user->role->role == 'Administrateur' || $user->role->role == 'Animateur') {
+        if ($user->role->role == 'Bureau' ) {
             return true;
         }
     }
@@ -65,8 +64,7 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document)
     {
-        // return $user->id === $document->user_id &&
-        // $user->canUpdateCategory($category);
+      
     }
 
     /**

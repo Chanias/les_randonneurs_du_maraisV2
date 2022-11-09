@@ -121,11 +121,11 @@
                         </div>
                     </div>
 
-                    <div class="field">
+                    <div class="row text-center" id="image">
                         <div class="col-md-6 mx-auto">
-                            <label for="label" class="mt-3 fs-4">Nouvelle carte :</label>
+                            <label for="image" class="mt-3 fs-4">Nouvelle carte :</label>
                             <div class="control">
-                                <input class="input" id="content" type="text" name="carte"
+                                <input type="file" name="carte" class="form-control"
                                     value="{{ $randonnee->carte }}">
                             </div>
                             @if ($errors->has('carte'))
@@ -133,6 +133,8 @@
                             @endif
                         </div>
                     </div>
+
+                    
 
                     <div class="field">
                         <div class="col-md-6 mx-auto">

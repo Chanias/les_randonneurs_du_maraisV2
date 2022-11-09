@@ -14,4 +14,7 @@ class Actualite extends Model
         'content',
         'image'
      ];
+     public function animateur(){
+        return $this->hasMany(User::class);
+    }
 }

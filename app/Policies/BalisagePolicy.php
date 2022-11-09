@@ -37,9 +37,7 @@ class BalisagePolicy
      */
     public function view(User $user)
     {
-        if ($user->role->role=='Bureau') {
-            return true;
-        }
+       
     }
 
     /**
@@ -84,7 +82,7 @@ class BalisagePolicy
      * @param  \App\Models\Balisage  $balisage
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Balisage $balisage)
+    public function restore(User $user)
     {
         //
     }
@@ -96,7 +94,7 @@ class BalisagePolicy
      * @param  \App\Models\Balisage  $balisage
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Balisage $balisage)
+    public function forceDelete(User $user)
     {
         //
     }

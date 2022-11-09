@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Randonnee;
+use App\Models\User;
 
 class RandonneeController extends Controller
 {
@@ -35,10 +36,23 @@ class RandonneeController extends Controller
             'nom' => 'required',
             'commentaires' => 'required',
             'kilometres' => 'required',
+            'lien_photos' => 'required',
+           
         ]);
+      
+        // on donne un nom à l'image : timestamp en temps unix + extension
+        $imageName = time() . '.' . $request->image->extension();
+
+        //on déplace l'image dans public/images
+        $request->image->move(public_path('images/cartes'), $imageName);
 
         // sauvegarde dans la base de données la nouvelle randonnée 
-        $randonnee->create($request->all());
+        $randonnee = Randonnee::create($request->all());
+     
+   
+
+
+     
 
         return redirect()->route('admin.index')->with('message', 'La nouvelle randonnée a été créée avec succès');
     }

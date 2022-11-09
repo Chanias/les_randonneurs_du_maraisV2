@@ -21,4 +21,19 @@ class HomeController extends Controller
         }
         return view('home');
     }
+    public function reglement_interieur()
+    {
+        return view('reglement_interieur');
+    }
+    public function mentions_legales()
+    {
+        return view('mentions_legales');
+    }
+    public function politique_confidentialite()
+    {
+        return view('politique_confidentialite');
+    }
+
+  
+
 }

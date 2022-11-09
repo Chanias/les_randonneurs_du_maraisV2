@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Http\Middleware\IsAdmin;
 use App\Models\Actualite;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -37,7 +36,7 @@ class ActualitePolicy
      */
     public function view(User $user, Actualite $actualite)
     {
-    //
+       
     }
 
     /**
@@ -48,9 +47,7 @@ class ActualitePolicy
      */
     public function create(User $user)
     {
-        if ($user->role->role=='Bureau') {
-            return true;
-        }
+      
     }
 
     /**
@@ -60,11 +57,9 @@ class ActualitePolicy
      * @param  \App\Models\Actualite  $actualite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Actualite $model)
+    public function update(User $user)
     {
-        if ($user->role->role=='Bureau') {
-            return true;
-        }
+     
     }
 
     /**
@@ -74,11 +69,9 @@ class ActualitePolicy
      * @param  \App\Models\Actualite  $actualite
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Actualite $model)
+    public function delete(User $user)
     {
-        if ($user->role->role=='Bureau') {
-            return true;
-        }
+       
     }
 
     /**
