@@ -9,7 +9,7 @@ class DocumentController extends Controller
 {
     public function index()
     {
-        // $documents = Document::where('categorie', 'compte_rendu')->get();
+        $documents = Document::where('categorie', 'compte_rendu')->get();
        
         return view('documents.index', compact('documents'));
     }
@@ -38,7 +38,7 @@ class DocumentController extends Controller
 
         $document->image = $imageName;
         $document->nom = $request->nom;
-       
+        $document->categorie = $request->categorie;
         $document->save();
 
         return redirect()->route('admin.index')->with('message', 'Le document a bien été ajouté...');

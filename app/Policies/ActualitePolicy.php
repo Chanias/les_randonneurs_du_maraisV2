@@ -10,11 +10,12 @@ class ActualitePolicy
 {
     use HandlesAuthorization;
 
-    public function before(User $user){
-        if($user -> isAdmin()){
+    public function before(User $user)
+    {
+        if ($user->isAdmin()) {
             return true;
         }
-       }
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -36,7 +37,6 @@ class ActualitePolicy
      */
     public function view(User $user, Actualite $actualite)
     {
-       
     }
 
     /**
@@ -47,7 +47,9 @@ class ActualitePolicy
      */
     public function create(User $user)
     {
-      
+        if ($user->role->role == 'Bureau') {
+            return true;
+        }
     }
 
     /**
@@ -59,7 +61,9 @@ class ActualitePolicy
      */
     public function update(User $user)
     {
-     
+        if ($user->role->role == 'Bureau') {
+            return true;
+        }
     }
 
     /**
@@ -71,7 +75,9 @@ class ActualitePolicy
      */
     public function delete(User $user)
     {
-       
+        if ($user->role->role == 'Bureau' || $user->role->role == 'Administrateur') {
+            return true;
+        }
     }
 
     /**

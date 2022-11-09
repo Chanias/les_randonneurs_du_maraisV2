@@ -36,12 +36,8 @@ Route::resource('randonnee', App\Http\Controllers\RandonneeController::class);
 //-----------------------------PHOTOS-------------------------------
 Route::resource('photos', App\Http\Controllers\PhotoController::class);
 
-
-
 //-----------------------------DOCUMENTS-------------------------------
-Route::resource('document', App\Http\Controllers\DocumentController::class)->only(['index',
-    'store','destroy']);
-
+Route::resource('document', App\Http\Controllers\DocumentController::class);
 
 //-----------------------------CONTACT-------------------------------
 Route::resource('contact', App\Http\Controllers\ContactController::class);

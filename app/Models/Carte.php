@@ -10,7 +10,7 @@ class Carte extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rando_id',
+        'randonnee_id',
         'nom_fichier'
        
     ];

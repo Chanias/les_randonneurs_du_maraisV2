@@ -25,8 +25,8 @@ class AdminController extends Controller
         $users = User::orderBy('nom', 'asc')->paginate(10, ['*'], 'users');
         $documents = Document::all();
         $randonnees = Randonnee::orderBy('date', 'desc')->paginate(10, ['*'], 'randonnees');
-        $actualites = Actualite::all();
-        // dd($actualites);
+        $actualites = Actualite::orderBy('created_at', 'desc')->paginate(10, ['*'], 'actualites');
+       
         $notifications = Notification::all();
 
 

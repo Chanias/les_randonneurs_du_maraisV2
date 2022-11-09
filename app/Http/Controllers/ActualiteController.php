@@ -50,7 +50,13 @@ class ActualiteController extends Controller
         //on déplace l'image dans public/images
         $request->image->move(public_path('images/actualites'), $imageName);
 
-        Actualite::create($request->all());
+        $actualite = new Actualite;
+
+        $actualite->image = $imageName;
+        $actualite->titre = $request->titre;
+        $actualite->content = $request->content;
+        $actualite->save();
+
         return redirect()->route('admin.index')->with('message', 'L\'actualité a bien été crée...');
     }
 

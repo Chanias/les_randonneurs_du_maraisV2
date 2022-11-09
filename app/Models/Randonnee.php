@@ -23,7 +23,7 @@ class Randonnee extends Model
     // ON CHARGE DIRECTEMENT A LA CREATION D'UNE RANDONNEE LES INFORMATIONS DES CARTES
     protected $with=[
         'carte',
-        // 'animateur'
+        'animateurs'
     ];
  
 
@@ -33,7 +33,8 @@ class Randonnee extends Model
     public function carte(){
         return $this->hasOne(Carte::class);
     }
-    public function animateur(){
-        return $this->hasOne(Animateur::class);
+   
+    public function animateurs(){
+        return $this ->belongsToMany(User::class, 'animateurs');
     }
 }

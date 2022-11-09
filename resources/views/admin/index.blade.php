@@ -5,29 +5,29 @@
 @endsection
 
 @section('content')
-<script>
-    let nomsTableaux = ['liste_adherents', 'actualites', 'liste_documents', 'liste_randonnees', 'ajouter_document',
-        'creer_randonnee', 'creer_actualite', 'balisage'
-    ];
+    <script>
+        let nomsTableaux = ['liste_adherents', 'actualites', 'liste_documents', 'liste_randonnees', 'ajouter_document',
+            'creer_randonnee', 'creer_actualite', 'balisage'
+        ];
 
-    function showElement(id) {
+        function showElement(id) {
 
-        nomsTableaux.forEach(element => { // nom du tableau 
-            let objet = document.getElementById(element)
-            if (objet) {
-                // objet.style.display = 'none'
-                document.getElementById(element).style.display = 'none'
+            nomsTableaux.forEach(element => { // nom du tableau 
+                let objet = document.getElementById(element)
+                if (objet) {
+                    // objet.style.display = 'none'
+                    document.getElementById(element).style.display = 'none'
+                }
+            });
+            let element = document.getElementById(id)
+            console.log(id)
+            if (element.style.display == 'block') {
+                element.style.display = 'none'
+            } else {
+                element.style.display = 'block'
             }
-        });
-        let element = document.getElementById(id)
-        console.log(id)
-        if (element.style.display == 'block') {
-            element.style.display = 'none'
-        } else {
-            element.style.display = 'block'
         }
-    }
-</script>
+    </script>
 
 
     <div class="container text-center">
@@ -55,16 +55,17 @@
             <button class="btn btn-success btn-lg" onclick="showElement('creer_randonnee')">Créer une
                 randonnee</button>
         @endcan
-       
+        @can('create', App\Models\Actualite::class)
             <button class="btn btn-success btn-lg" onclick="showElement('creer_actualite')">Créer une actualité</button>
-       
+        @endcan
     </div>
 
     <br>
     <div class="container text-center">
         <button class="btn btn-primary btn-lg" onclick="showElement('actualites')">Les actualités</button>
-        <button class="btn btn-primary btn-lg" onclick="showElement('balisage')">Le balisage</button>
-
+        @can('create', App\Models\Balisage::class)
+            <button class="btn btn-primary btn-lg" onclick="showElement('balisage')">Le balisage</button>
+        @endcan
     </div>
 
 
@@ -225,6 +226,7 @@
                         <th>Nombre de kilomètres</th>
                         <th>Lien des photos</th>
                         <th>La carte</th>
+                        <th>Les animateurs</th>
 
                         @can('create', App\Models\Randonnee::class)
                             <th>Modifier</th>
@@ -244,6 +246,7 @@
                             <td>{{ $randonnee->commentaires }}</td>
                             <td>{{ $randonnee->kilometres }}</td>
                             <td>{{ $randonnee->lien_photos }}</td>
+
                             {{-- Faire une icone pour la carte --}}
                             @if ($randonnee->carte)
                                 @php
@@ -256,6 +259,15 @@
                                 <td>pas de carte disponible pour cette randonnée</td>
                             @endif
 
+                            <td>
+                                @if (count($randonnee->animateurs) > 0)
+                                    @foreach ($randonnee->animateurs as $animateur)
+                                        {{ $animateur->nom }} {{ $animateur->prenom }}
+                                    @endforeach
+                                @else
+                                    <p>Aucun animateurs de prévu</p>
+                                @endif
+                            </td>
                             @can('update', $randonnee)
                                 <!--MODIFIER LA RANDONNEE-->
                                 <td>
@@ -355,17 +367,20 @@
                         </div>
                         <div class="mb-3 row">
                         @endcan
+
                         <div class="mb-3 mx-auto">
                             <label for="image" class="fs-4 mt-3">La carte : </label>
-                            <input type="file" name="image" class="form-control">
+                            <input type="file" name="carte" class="form-control">
                         </div>
 
                         <div>
+
                             <h3>Les animateurs:</h3>
-                            @foreach ($users as $user)
-                                <input type="checkbox" id="article{{ $user->id }}" name="user{{ $user->id }}"
-                                    value="{{ $user->id }}">
-                                <label for="article{{ $user->id }}">{{ $user->nom }} {{ $user->prenom }}</label>
+                            @foreach ($randonnee->animateurs as $animateur)
+                                <input type="checkbox" id="animateur{{ $animateur->id }}"
+                                    name="user{{ $animateur->id }}" value="{{ $animateur->id }}">
+                                <label for="animateur{{ $animateur->id }}">{{ $animateur->nom }}
+                                    {{ $animateur->prenom }}</label>
                             @endforeach
                         </div>
 
@@ -378,38 +393,42 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+
     <!----------------------------------------------------------LES ACTUALITES------------------------------------------->
     <div class="container" id="actualites" style="padding-top: 5%;display: none">
         <!-- On parcourt la liste des actualités -->
         <h2>Les Actualités de l'association</h2>
         @foreach ($actualites as $actualite)
-            <div class="card">
-                <img class="card-img" src="{{ asset("images/actualites/$actualite->image") }}" alt="actualites">
+            <div class="card text-start">
+                <h4 class="card-title">{{ $actualite->titre }}</h4>
+                <img class="card-img-top" src="{{ asset("images/actualites/$actualite->image") }}" alt="Title"
+                    style="width:20%;text-content: center">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $actualite->titre }}</h5>
-                    <p class="card-text">{{ $actualite->texte }}</p>
+                    <p class="card-text">{{ $actualite->content }}</p>
                     <p class="card-text"><small class="text-muted">{{ $actualite->created_at }}</small></p>
+
                     <a href="{{ route('actualite.show', $actualite) }}">
                         <input type="submit" class="btn btn-primary" value="Détails de l'actualité">
                     </a>
+                    
+                    <!--MODIFIER L'ACTUALITE-->
                     @can('update', $actualite)
-                        <!--MODIFIER L'ACTUALITE-->
-                        <td>
-                            <!--LIEN POUR ALLER SUR LA VIEW MODIFIER L'ACTUALITE-->
-                            <a href="{{ route('actualite.edit', $actualite) }}">
-                                <button class="btn btn-success">Modifier l'actualité</button>
-                            </a>
-                        </td>
+                        <!--LIEN POUR ALLER SUR LA VIEW MODIFIER L'ACTUALITE-->
+                        <a href="{{ route('actualite.edit', $actualite) }}">
+                            <button class="btn btn-success">Modifier l'actualité</button>
+                        </a>
                     @endcan
 
+                    <!--SUPPRIMER L'ACTUALITE-->
                     @can('delete', $actualite)
-                        <!--SUPPRIMER UNE ACTUALITE-->
-                        <form method="POST" action="{{ route('actualite.destroy', $actualite) }}">
-                            <!-- CSRF token -->
+                        <!--LIEN POUR SUPPRIMER L'ACTUALITE-->
+                        <form class="section" action="{{ route('actualite.destroy', $actualite) }}" method="post">
                             @csrf
                             @method('DELETE')
-                        @endcan
+                            <input type="submit" class="btn btn-danger" value="Supprimer l'actualité">
+                        </form>
+                    @endcan
                 </div>
             </div>
         @endforeach
@@ -418,46 +437,46 @@
 
     <!--CREER UNE NOUVELLE ACTUALITE-->
     @can('create', $actualite)
-    <div class="container" id="creer_actualite" style="padding-top: 5%;display: none">
-        <div class="row text-center">
-            <div class="col-md-12 text-center">
-                <h3>Créer une actualité</h3>
+        <div class="container" id="creer_actualite" style="padding-top: 5%;display: none">
+            <div class="row text-center">
+                <div class="col-md-12 text-center">
+                    <h3>Créer une actualité</h3>
+                </div>
+                <hr>
+                <div class="row">
+                    <form action="{{ route('actualite.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3 row">
+                            <label class="label">Titre de l'actualité :</label>
+                            <div class="control">
+                                <input class="input" type="text" name="titre">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="label">Texte :</label>
+                            <div class="control">
+                                <textarea class="textarea" name="content" placeholder="Les détails par ici..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 mx-auto">
+                            <label for="image" class="fs-4 mt-3">Image : </label>
+                            <input type="file" name="image" class="form-control">
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="btn btn-success" type="submit">Valider</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-            <hr>
-            <div class="row">
-                <form action="{{ route('actualite.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3 row">
-                        <label class="label">Titre de l'actualité :</label>
-                        <div class="control">
-                            <input class="input" type="text" name="titre">
-                        </div>
-                    </div>
 
-                    <div class="mb-3 row">
-                        <label class="label">Texte :</label>
-                        <div class="control">
-                            <textarea class="textarea" name="content" placeholder="Les détails par ici..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 mx-auto">
-                        <label for="image" class="fs-4 mt-3">Image : </label>
-                        <input type="file" name="image" class="form-control">
-                    </div>
-
-                    <div class="field">
-                        <div class="control">
-                            <button class="btn btn-success" type="submit">Valider</button>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
         </div>
-
-    </div>
-@endcan
+    @endcan
 
 
 

@@ -37,7 +37,9 @@ class BalisagePolicy
      */
     public function view(User $user)
     {
-       
+        if ($user->role->role == 'Animateur' ) {
+            return false;
+        }
     }
 
     /**

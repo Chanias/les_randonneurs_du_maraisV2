@@ -39,7 +39,6 @@ class DocumentPolicy
     {
         if ($user->role->role == 'Bureau' && $document->categorie == 'compte_rendu' ) 
             return true;
-            // 
     }
 
     /**
@@ -64,7 +63,9 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document)
     {
-      
+        if ($user->role->role == 'Bureau' ) {
+            return true;
+        }
     }
 
     /**

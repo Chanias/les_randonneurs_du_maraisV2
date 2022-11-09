@@ -13,7 +13,7 @@
         </div>
 
         @if (isset($randonnee))
-            <form method="POST" action="{{ route('randonnee.update', $randonnee) }}">
+            <form method="POST" action="{{ route('randonnee.update', $randonnee) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row text-center">
@@ -123,25 +123,29 @@
 
                     <div class="row text-center" id="image">
                         <div class="col-md-6 mx-auto">
-                            <label for="image" class="mt-3 fs-4">Nouvelle carte :</label>
-                            <div class="control">
-                                <input type="file" name="carte" class="form-control"
-                                    value="{{ $randonnee->carte }}">
-                            </div>
-                            @if ($errors->has('carte'))
-                                <p class="help is-danger">{{ $errors->first('carte') }}</p>
-                            @endif
+                            <label for="image" class="fs-4 mt-3">Carte : </label>
+                            <input type="file" name="nom_fichier" class="form-control ">
                         </div>
                     </div>
-
-                    
 
                     <div class="field">
                         <div class="col-md-6 mx-auto">
                             <label for="label" class="mt-3 fs-4">Nouveaux animateurs :</label>
                             <div class="control">
-                                <input class="input" id="content" type="text" name="animateur"
-                                    value="{{ $randonnee->animateur }}">
+                                {{--  boucle sur les animateurs --}}
+                                @foreach ($animateurs as $animateur)
+                                    <input type="checkbox" id="animateur{{ $animateur->id }}"
+                                        name="animateur{{ $animateur->id }}" value="{{ $animateur->id }}"
+                                        {{-- boucler sur les animateurs de chaque randonnées et checker d'office la checkox --}}
+                                        @foreach ($randonnee->animateurs as $animateur_rando) 
+                                                @if ($animateur_rando->id == $animateur->id)
+                                                checked
+                                                @break 
+                                                @endif @endforeach>
+                                    <label for="animateur{{ $animateur->id }}">{{ $animateur->nom }}
+                                        {{ $animateur->prenom }}</label>
+                                @endforeach
+
                             </div>
                             @if ($errors->has('animateur'))
                                 <p class="help is-danger">{{ $errors->first('animateur') }}</p>

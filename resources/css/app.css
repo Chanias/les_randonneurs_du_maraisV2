@@ -234,11 +234,6 @@ blockquote p::after {
     color: aliceblue;
 }
  
-/*PAGE ADMIN*/
-#actualites img{
-    width: 50%;
-}
-
 /*MEDIA SCREEN*/
 @media screen and (max-width: 1000px) {
     .details{

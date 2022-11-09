@@ -14,7 +14,6 @@ class CarteControler extends Controller
      */
     public function index()
     {
-       
     }
 
     /**
@@ -69,9 +68,24 @@ class CarteControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Carte $carte)
     {
-        //
+        $this->authorize('update', $carte);
+
+        $request->validate([
+            'nom_fichier' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'rando_id' => 'required',
+
+        ]);
+        // on donne un nom à l'image : timestamp en temps unix + extension
+        $imageName = time() . '.' . $request->image->extension();
+
+        //on déplace l'image dans public/images
+        $request->image->move(public_path('images/cartes'), $imageName);
+
+
+        $carte->update($request->all());
+        return redirect()->route('admin.index')->with('message', 'La carte a bien été modifié...');
     }
 
     /**
@@ -80,8 +94,11 @@ class CarteControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Carte $carte)
     {
-        //
+        $this->authorize('delete', $carte);
+
+        $carte->delete();
+        return redirect()->route('admin.index')->with('message', 'La carte a bien été supprimé...');
     }
 }

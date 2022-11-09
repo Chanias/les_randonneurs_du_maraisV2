@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Randonnee;
 use App\Models\User;
+use App\Models\Carte;
 
 class RandonneeController extends Controller
 {
@@ -37,22 +38,32 @@ class RandonneeController extends Controller
             'commentaires' => 'required',
             'kilometres' => 'required',
             'lien_photos' => 'required',
-           
+            'carte' => 'required|image|mimes:jpeg,png,jpg,gif,tiff,svg|max:2048',
+
         ]);
-      
-        // on donne un nom à l'image : timestamp en temps unix + extension
-        $imageName = time() . '.' . $request->image->extension();
+
+        // on donne un nom à l'image : nom rando + extension
+        $nomCarte = $request->nom . '.' . $request->carte->extension();
 
         //on déplace l'image dans public/images
-        $request->image->move(public_path('images/cartes'), $imageName);
+        $request->carte->move(public_path('images/cartes'), $nomCarte);
 
         // sauvegarde dans la base de données la nouvelle randonnée 
         $randonnee = Randonnee::create($request->all());
-     
-   
 
+        // sauvegarde de la carte dans la base de données
+        Carte::create([
+            'randonnee_id' => $randonnee->id,
+            'nom_fichier' => $nomCarte
+        ]);
 
-     
+        //insertion des animateurs associés via un eager loading dans randonnee
+        $users = User::all();
+        for ($i = 1; $i < count($users); $i++) {
+            if (isset($request['user' . $i])) {
+                $randonnee->animateurs()->attach([$i]); // attach = insert into ...
+            }
+        }
 
         return redirect()->route('admin.index')->with('message', 'La nouvelle randonnée a été créée avec succès');
     }
@@ -67,7 +78,9 @@ class RandonneeController extends Controller
     {
         $this->authorize('update', $randonnee);
 
-        return view('randonnees.edit', compact('randonnee'));
+        $animateurs = User::where('role_id', 3)->get();
+
+        return view('randonnees.edit', compact('randonnee', 'animateurs'));
     }
 
     /**
@@ -94,7 +107,25 @@ class RandonneeController extends Controller
         ]);
 
         $randonnee->update($request->all());
-        return redirect()->route('admin.index')->with('message', 'La randonnée a bien été modifié...');
+
+
+        // on enlève les animateurs de la table intermédiaire
+        foreach ($randonnee->animateurs as $animateur) {
+            $randonnee->animateurs()->detach($animateur);
+        }
+
+        // On récupère la liste des animateurs
+        $animateurs = User::where('role_id', 3)->get();
+
+
+        //On réinplante les nouveaux animateurs dans la base de données
+        foreach($animateurs as $animateur){
+       
+            if (isset($request['animateur' . $animateur->id])) {
+                $randonnee->animateurs()->attach([$animateur->id]); // attach = insert into ...
+            }
+        }
+        return redirect()->route('admin.index')->with('message', 'La randonnée a bien été modifiée...');
     }
 
 
