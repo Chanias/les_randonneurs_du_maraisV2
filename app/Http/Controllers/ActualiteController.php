@@ -16,7 +16,7 @@ class ActualiteController extends Controller
      */
     public function index()
     {
-        $actualites = Actualite::all();
+        $actualites = Actualite::orderBy('created_at', 'desc')->paginate(10, ['*'], 'actualites');
         return view('actualites.index', compact('actualites'));
     }
 
