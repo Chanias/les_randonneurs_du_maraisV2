@@ -355,5 +355,107 @@ class AdresseSeeder extends Seeder
             'ville'=>'LUÇON',
             'user_id'=>56
         ]);
+        Adresse::create([
+            'adresse'=>'5 rue du Port d\'Aisne',
+            'code_postal'=>'85450',
+            'ville'=>'VOUILLE LES MARAIS',
+            'user_id'=>57
+        ]);
+        Adresse::create([
+            'adresse'=>'8 route de Chaix',
+            'code_postal'=>'85770',
+            'ville'=>'LES VEILLUIRES SUR VENDEE',
+            'user_id'=>58
+        ]);
+        Adresse::create([
+            'adresse'=>'8 route de Chaix',
+            'code_postal'=>'85770',
+            'ville'=>'LES VEILLUIRES SUR VENDEE',
+            'user_id'=>59
+        ]);
+        Adresse::create([
+            'adresse'=>'LIEU DIT L\'AVENTURE',
+            'code_postal'=>'17230',
+            'ville'=>'MARANS',
+            'user_id'=>60
+        ]);
+        Adresse::create([
+            'adresse'=>'47 rue du 11 Novembre',
+            'code_postal'=>'85450',
+            'ville'=>'CHAILLE LES MARAIS',
+            'user_id'=>61
+        ]);
+        Adresse::create([
+            'adresse'=>'7 ALLEE HELENE DE SUZANNET ',
+            'code_postal'=>'85200',
+            'ville'=>'FONTENAY LE COMTE',
+            'user_id'=>62
+        ]);
+        Adresse::create([
+            'adresse'=>'42 rue de la Touchantée',
+            'code_postal'=>'85770',
+            'ville'=>'VIX',
+            'user_id'=>63
+        ]);
+        Adresse::create([
+            'adresse'=>'3 impasse des Plantes',
+            'code_postal'=>'85200',
+            'ville'=>'AUCHAY SUR VENDEE',
+            'user_id'=>64
+        ]);
+        Adresse::create([
+            'adresse'=>'5 Rue Peirre Chisson',
+            'code_postal'=>'85400',
+            'ville'=>'STE GEMME LA PLAINE',
+            'user_id'=>65
+        ]);
+        Adresse::create([
+            'adresse'=>'5 Rue Peirre Chisson',
+            'code_postal'=>'85400',
+            'ville'=>'STE GEMME LA PLAINE',
+            'user_id'=>66
+        ]);
+        Adresse::create([
+            'adresse'=>'60 rue Georges Clémenceau',
+            'code_postal'=>'85770',
+            'ville'=>'VIX',
+            'user_id'=>67
+        ]);
+        Adresse::create([
+            'adresse'=>'42 Le Petit Louvre',
+            'code_postal'=>'85450',
+            'ville'=>'LA TAILLEE',
+            'user_id'=>68
+        ]);
+        Adresse::create([
+            'adresse'=>'1 Bis rue de la Combe',
+            'code_postal'=>'85770',
+            'ville'=>'VIX',
+            'user_id'=>69
+        ]);
+        Adresse::create([
+            'adresse'=>'42 rue de la Touchantée',
+            'code_postal'=>'85770',
+            'ville'=>'VIX',
+            'user_id'=>70
+        ]);
+        Adresse::create([
+            'adresse'=>'5 rue de la Frégate',
+            'code_postal'=>'17230',
+            'ville'=>'MARANS',
+            'user_id'=>71
+        ]);
+        Adresse::create([
+            'adresse'=>'5 rue mermoz',
+            'code_postal'=>'85450',
+            'ville'=>'CHAILLE LES MARAIS',
+            'user_id'=>72
+        ]);
+        Adresse::create([
+            'adresse'=>'4 impasse des Aigrettes ',
+            'code_postal'=>'85450',
+            'ville'=>'STE RADEGONDE DES NOYERS',
+            'user_id'=>73
+        ]);
     }
 }

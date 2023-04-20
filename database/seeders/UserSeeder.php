@@ -595,6 +595,193 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
             'role_id'=>4
         ]);
+        User::create([
+            'nom'=>'ALLARA',
+            'prenom'=>'Annie',
+            'date_de_naissance'=>'18/05/1958',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 50 02 89 45',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'annieallara@yahoo.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'ARNOULD',
+            'prenom'=>'Patrick',
+            'date_de_naissance'=>'25/10/1951',
+            'num_telephone_fixe'=>'02 51 00 59 51',
+            'num_telephone_portable'=>'06 12 61 67 35',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'cestmoipat@free.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'ARNOULD',
+            'prenom'=>'Geneviève',
+            'date_de_naissance'=>'28/08/1953',
+            'num_telephone_fixe'=>'02 51 00 59 51',
+            'num_telephone_portable'=>'06 13 55 32 98',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'arnould.gene@free.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'ARSICAUD',
+            'prenom'=>'Claude',
+            'date_de_naissance'=>'11/02/1953',
+            'num_telephone_fixe'=>'04 46 01 03 84',
+            'num_telephone_portable'=>'',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'claude.ariscaud@sfr.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'AUTIN',
+            'prenom'=>'Claudine',
+            'date_de_naissance'=>'30/06/1961',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 29 42 20 73',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'claudineautin@orange.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'AYRAUD',
+            'prenom'=>'Michèle',
+            'date_de_naissance'=>'',
+            'num_telephone_fixe'=>'02 51 52 80 29',
+            'num_telephone_portable'=>'06 32 31 67 78',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'remi.ayraud@orange.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'CHASSAGNY',
+            'prenom'=>'Marie',
+            'date_de_naissance'=>'',
+            'num_telephone_fixe'=>'02 51 00 65 91',
+            'num_telephone_portable'=>'',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'alainlievre@neuf.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'DIEUDEGARD',
+            'prenom'=>'Daniele',
+            'date_de_naissance'=>'18/10/1950',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 75 79 27 15',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'eleinad18@hotmail.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'GARNIER',
+            'prenom'=>'Agnès',
+            'date_de_naissance'=>'22/06/1952',
+            'num_telephone_fixe'=>'02 51 56 53 08',
+            'num_telephone_portable'=>'06 23 25 37 70',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'dominique.agnes.garnier@orange.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'GARNIER',
+            'prenom'=>'Dominique',
+            'date_de_naissance'=>'11/09/1948',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 16 56 89 72',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'dominique.agnes.garnier@orange.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'GAUDIN',
+            'prenom'=>'Jean-Pierre',
+            'date_de_naissance'=>'27/09/1956',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 76 09 61 01',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'jeanpierre1gaudin@gmail.com',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'GRELIER',
+            'prenom'=>'Marie-Elisabeth',
+            'date_de_naissance'=>'03/07/1955',
+            'num_telephone_fixe'=>'02 51 69 48 12',
+            'num_telephone_portable'=>'06 28 29 06 78',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'babeth557@gmail.com',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'LE BONHOMME',
+            'prenom'=>'Christine',
+            'date_de_naissance'=>'17/03/1961',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 58 43 52 75',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'doris.85@live.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+         User::create([
+            'nom'=>'LIEVRE',
+            'prenom'=>'Alain',
+            'date_de_naissance'=>'28/11/1955',
+            'num_telephone_fixe'=>'02 51 00 65 91',
+            'num_telephone_portable'=>'06 70 25 73 53',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'alainlievre@neuf.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+          User::create([
+            'nom'=>'POUGNAULT',
+            'prenom'=>'Paricia',
+            'date_de_naissance'=>'02/05/1960',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 16 89 31 93',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'pougnaultpatricia@gmail.com',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+          User::create([
+            'nom'=>'SALINIERES',
+            'prenom'=>'Nadine',
+            'date_de_naissance'=>'0/12/58',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 03 66 20 97',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'n.salinieres@sfr.fr',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
+          User::create([
+            'nom'=>'SUAREZ',
+            'prenom'=>'Nathalie',
+            'date_de_naissance'=>'05/03/1966',
+            'num_telephone_fixe'=>'',
+            'num_telephone_portable'=>'06 21 49 13 74',
+            'password' => Hash::make('Bonbon79!'),
+            'email' => 'nasua66@gmail.com',
+            'remember_token' => Str::random(10),
+            'role_id'=>1
+        ]);
 
     }
 }

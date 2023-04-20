@@ -1,4 +1,7 @@
 /*GLOBAL*/
+* {
+    font-family: arial;
+}
 h1{
     color: #198754;
     text-align: center;

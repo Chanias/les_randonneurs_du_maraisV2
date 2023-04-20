@@ -4,6 +4,7 @@ APP_KEY=base64:kUTgI3UaPat+O0nSN+3nuG9Bxv1zj4lEbBmXrJdphUs=
 APP_DEBUG=true
 APP_URL=http://localhost
 
+
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=debug
