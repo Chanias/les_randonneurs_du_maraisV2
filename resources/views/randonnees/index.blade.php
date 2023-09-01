@@ -109,44 +109,8 @@
         <div class="container">
             <div class="mb-3">
                 <!-- On parcourt la liste des randonnees -->
-                <h2 class="text-center">La liste des randonnées</h2>
-                <table class="table text-center">
-                    <thead>
-                        <tr>
-                            <th>Date de la randonnée</th>
-                            <th>Heure de rendez vous</th>
-                            <th>Heure de départ</th>
-                            <th>Point de départ</th>
-                            <th>Nom de la randonnée</th>
-                            <th>Commentaire</th>
-                            <th>Nombre de kilomètres</th>
-                            <th>Lien des photos</th>
-                            <th>La carte</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($randonnees as $randonnee)
-                            <tr>
-                                <td>{{ $randonnee->date }}</td>
-                                <td>{{ $randonnee->heure_rdv }}</td>
-                                <td>{{ $randonnee->heure_depart }}</td>
-                                <td>{{ $randonnee->point_de_depart }}</td>
-                                <td>{{ $randonnee->nom }}</td>
-                                <td>{{ $randonnee->commentaires }}</td>
-                                <td>{{ $randonnee->kilometres }}</td>
-                                <td>{{ $randonnee->lien_photos }}</td>
-                                @if ($randonnee->carte)
-                                @php
-                                    $nom_fichier = $randonnee->carte->nom_fichier;
-                                    
-                                @endphp
-                                <td><a href="{{ asset("images/cartes/$nom_fichier") }}">Télécharger </a></td>
-                            @else
-                                <td>pas de carte disponible pour cette randonnée</td>
-                            @endif
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <h2 class="text-center">Les randonnées du mois</h2>
+                
             </div>
         </div>
     @endif

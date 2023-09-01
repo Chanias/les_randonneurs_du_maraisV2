@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom',50);
             $table->string('image',191);
-            $table->enum('categorie',['certificat_medical','questionnaire', 'carte','note_de_frais','compte_rendu','programme_balisage']);
+            $table->enum('categorie',['questionnaire', 'carte','note_de_frais','compte_rendu','programme_balisage','randonnee']);
             $table->timestamps();
         });
     }

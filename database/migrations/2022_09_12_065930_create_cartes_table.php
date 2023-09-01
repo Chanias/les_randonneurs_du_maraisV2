@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nom_fichier',50);
             $table->timestamps();
 
-            $table->foreignId('randonnee_id')->constrained()->onDelete('cascade');
+           
         });
     }
 

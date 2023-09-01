@@ -24,14 +24,14 @@ class AdminController extends Controller
         // ON RECUPERE TOUT CE QUE L'ADMIN A BESOIN DE VOIR SUR SA PAGE
         $users = User::orderBy('nom', 'asc')->paginate(10, ['*'], 'users');
         $documents = Document::all();
-        $randonnees = Randonnee::orderBy('date', 'desc')->paginate(10, ['*'], 'randonnees');
+        $randonnees= Randonnee::all();
         $actualites = Actualite::orderBy('created_at', 'desc')->paginate(10, ['*'], 'actualites');
        
         $notifications = Notification::all();
 
 
 
-        return view('admin.index', compact('users', 'documents', 'randonnees', 'actualites', 'notifications',));
+        return view('admin.index', compact('users', 'documents', 'actualites', 'notifications','randonnees'));
     }
     /**
      * Show the application dashboard.

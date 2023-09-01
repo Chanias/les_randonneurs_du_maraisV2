@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
             DocumentsSeeder::class,
             ActualiteSeeder::class,
             CarteSeeder::class,
-            AnimateurSeeder::class,
             NotificationSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();

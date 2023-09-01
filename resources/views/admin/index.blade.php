@@ -6,8 +6,8 @@
 
 @section('content')
     <script>
-        let nomsTableaux = ['liste_adherents', 'actualites', 'liste_documents', 'liste_randonnees', 'ajouter_document',
-            'creer_randonnee', 'creer_actualite', 'balisage'
+        let nomsTableaux = ['liste_adherents', 'actualites', 'liste_documents', 'ajouter_document',
+            'creer_actualite', 'balisage', 'liste_randonnees', 'creer_randonnee'
         ];
 
         function showElement(id) {
@@ -51,10 +51,11 @@
         @can('create', App\Models\Document::class)
             <button class="btn btn-success btn-lg" onclick="showElement('ajouter_document')">Ajouter un document</button>
         @endcan
+
         @can('create', App\Models\Randonnee::class)
-            <button class="btn btn-success btn-lg" onclick="showElement('creer_randonnee')">Créer une
-                randonnee</button>
+            <button class="btn btn-success btn-lg" onclick="showElement('creer_randonnee')">Ajouter une randonnées</button>
         @endcan
+
         @can('create', App\Models\Actualite::class)
             <button class="btn btn-success btn-lg" onclick="showElement('creer_actualite')">Créer une actualité</button>
         @endcan
@@ -160,6 +161,101 @@
             </div>
         </div>
     </div>
+    <!------------------------------------------------ LES RANDONNEES ------------------------------------------------------------->
+    <!--LA LISTE DES RANDONNEES-->
+    <div class="container" id="liste_randonnees" style="padding-top: 5%;display: none">
+        <div class="mb-3">
+            <!-- On parcourt la liste des documents -->
+            <h2 class="text-center">Les randonnées</h2>
+            <div class="col-12 text-center">
+                <div class="row mb-5">
+
+                    @foreach ($randonnees as $randonnee)
+                        <div class="card text-center" style="width: 18rem;">
+                            <h3 class="card-title ">{{ $randonnee->nom }}</h3>
+                            <div class="card-body">
+                                <img class="card-img" src="{{ asset("images/documents/randonnees/$randonnee->image") }}"
+                                    alt="Documents">
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AJOUTER UNE RANDONNEES-->
+    <div class="container" id="creer_randonnee" style="padding-top: 5%;display: none">
+        <div class="mb-3">
+            <!-- On parcourt la liste des documents -->
+            <h2 class="text-center">Ajouter une randonnée</h2>
+            <div class="col-12 text-center">
+                <div class="row mb-5">
+
+                    <div class="row">
+                        <form action="{{ route('randonnee.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3 row">
+                                <label class="label">Nom de la randonnée :</label>
+                                <div class="control">
+                                    <input class="input" type="text" name="nom">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 mx-auto">
+                                <label for="image" class="fs-4 mt-3">Image : </label>
+                                <input type="file" name="image" class="form-control">
+                            </div>
+
+                            {{-- Mettre un select --}}
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                                name="categorie">
+                                <option selected>Choisir la catégorie de document</option>
+
+                                @if (Auth::user()->role_id == 5)
+                                    <option value="randonnees">Randonnées</option>
+                                    <option value="questionnaire">Questionnaire</option>
+                                @endif
+                                <option value="compte_rendu">Compte rendu</option>
+
+                            </select>
+
+                            <div class="field">
+                                <div class="control">
+                                    <button class="btn btn-success" type="submit">Valider</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- @foreach ($randonnees as $randonnee)
+                        @can('view', $randonnee)
+                            <div class="card text-center" style="width: 18rem;">
+                                <h3 class="card-title ">{{ $randonnee->nom }}</h3>
+                                <div class="card-body">
+                                    <img class="card-img" src="{{ asset("images/documents/$document->image") }}"
+                                        alt="Documents">
+                                </div>
+                                @can('delete', $randonnee)
+                                    <!--SUPPRIMER UN DOCUMENT-->
+                                    <form method="POST" action="{{ route('randonnee.destroy', $randonnee) }}">
+                                        <!-- CSRF token -->
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn btn-danger" value="Supprimer la randonnées">
+                                    </form>
+                                @endcan
+                            </div>
+                        @endcan
+                    @endforeach  --}}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!------------------------------------------AJOUTER UN DOCUMENT-------------------------------------------------->
     {{-- @can('create', $document) --}}
@@ -185,7 +281,8 @@
                     </div>
 
                     {{-- Mettre un select --}}
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="categorie">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                        name="categorie">
                         <option selected>Choisir la catégorie de document</option>
 
                         @if (Auth::user()->role_id == 5)
@@ -207,193 +304,11 @@
     </div>
     <!----------------------------------------------------------------------------------------------------->
 
-    <!------------------------------------------LES RANDONNEES------------------------------------------->
 
-    <!--LISTE RANDONNEES-->
-    <div class="container" id="liste_randonnees" style="padding-top: 5%;display: none">
-        <div class="mb-3">
-            <!-- On parcourt la liste des randonnees -->
-            <h2 class="text-center">La liste des randonnées</h2>
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th>Date de la randonnée</th>
-                        <th>Heure de rendez vous</th>
-                        <th>Heure de départ</th>
-                        <th>Point de départ</th>
-                        <th>Nom de la randonnée</th>
-                        <th>Commentaire</th>
-                        <th>Nombre de kilomètres</th>
-                        <th>Lien des photos</th>
-                        <th>La carte</th>
-                        <th>Les animateurs</th>
-
-                        @can('create', App\Models\Randonnee::class)
-                            <th>Modifier</th>
-                            <th>Supprimer</th>
-                        @endcan
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($randonnees as $randonnee)
-                        <tr>
-                            <td>{{ $randonnee->date }}</td>
-                            <td>{{ $randonnee->heure_rdv }}</td>
-                            <td>{{ $randonnee->heure_depart }}</td>
-                            <td>{{ $randonnee->point_de_depart }}</td>
-                            <td>{{ $randonnee->nom }}</td>
-                            <td>{{ $randonnee->commentaires }}</td>
-                            <td>{{ $randonnee->kilometres }}</td>
-                            <td>{{ $randonnee->lien_photos }}</td>
-
-                            {{-- Faire une icone pour la carte --}}
-                            @if ($randonnee->carte)
-                                @php
-                                    $nom_fichier = $randonnee->carte->nom_fichier;
-                                    
-                                @endphp
-                                <td><a href="{{ asset("images/cartes/$nom_fichier") }}" target="_blank">Télécharger </a>
-                                </td>
-                            @else
-                                <td>pas de carte disponible pour cette randonnée</td>
-                            @endif
-
-                            <td>
-                                @if (count($randonnee->animateurs) > 0)
-                                    @foreach ($randonnee->animateurs as $animateur)
-                                        {{ $animateur->nom }} {{ $animateur->prenom }}
-                                    @endforeach
-                                @else
-                                    <p>Aucun animateurs de prévu</p>
-                                @endif
-                            </td>
-                            @can('update', $randonnee)
-                                <!--MODIFIER LA RANDONNEE-->
-                                <td>
-                                    <!--LIEN POUR ALLER SUR LA VIEW MODIFIER LA RANDONNEE-->
-                                    <a href="{{ route('randonnee.edit', $randonnee) }}">
-                                        <button class="btn btn-success">Modifier la randonnée</button>
-                                    </a>
-                                </td>
-                            @endcan
-
-                            @can('delete', $randonnee)
-                                <!--SUPPRIMER LA RANDONNEE-->
-                                <form method="POST" action="{{ route('randonnee.destroy', $randonnee) }}">
-                                    <!-- CSRF token -->
-                                    @csrf
-                                    @method('DELETE')
-                                    <td>
-                                        <input type="submit" class="btn btn-danger" value="Supprimer la randonnée">
-                                    </td>
-                                </form>
-                            @endcan
-                        </tr>
-                </tbody>
-                @endforeach
-
-            </table>
-        </div>
-        {{ $randonnees->links() }}
-    </div>
     <!----------------------------------------------------------------------------------------------------->
 
 
-    <!-----------------------------------------LA CREATION D'UNE RANDONNEE:------------------------------------------------>
-    <div class="container" id="creer_randonnee" style="padding-top: 5%;display: none">
-        <div class="row text-center">
-            <div class="col-md-12 text-center">
-                <h3>Créer une randonnée</h3>
-            </div>
-            <hr>
-            <div class="row">
-                <form action="{{ route('randonnee.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @can('create', $randonnee)
-                        <div class="mb-3 row">
-                            <label class="label">Date de la randonnée :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="date">
-                            </div>
-                        </div>
 
-                        <div class="mb-3 row">
-                            <label class="label">Heure de rendez vous :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="heure_rdv">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label class="label">Heure de départ :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="heure_depart">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label class="label">Point de départ :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="point_de_depart">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label class="label">Nom de la randonnée :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="nom">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label class="label">Commentaire :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="commentaires">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="label">Kilomètres :</label>
-                            <div class="control">
-                                <input class="input" type="number" name="kilometres">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label class="label">Lien des photos :</label>
-                            <div class="control">
-                                <input class="input" type="text" name="lien_photos">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                        @endcan
-
-                        <div class="mb-3 mx-auto">
-                            <label for="image" class="fs-4 mt-3">La carte : </label>
-                            <input type="file" name="carte" class="form-control">
-                        </div>
-
-                        <div>
-
-                            <h3>Les animateurs:</h3>
-                            @foreach ($randonnee->animateurs as $animateur)
-                                <input type="checkbox" id="animateur{{ $animateur->id }}"
-                                    name="user{{ $animateur->id }}" value="{{ $animateur->id }}">
-                                <label for="animateur{{ $animateur->id }}">{{ $animateur->nom }}
-                                    {{ $animateur->prenom }}</label>
-                            @endforeach
-                        </div>
-
-                        <div class="field">
-                            <div class="control">
-                                <button class="btn btn-success" type="submit">Valider</button>
-                            </div>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
 
     <!----------------------------------------------------------LES ACTUALITES------------------------------------------->
     <div class="container" id="actualites" style="padding-top: 5%;display: none">
@@ -411,7 +326,7 @@
                     <a href="{{ route('actualite.show', $actualite) }}">
                         <input type="submit" class="btn btn-primary" value="Détails de l'actualité">
                     </a>
-                    
+
                     <!--MODIFIER L'ACTUALITE-->
                     @can('update', $actualite)
                         <!--LIEN POUR ALLER SUR LA VIEW MODIFIER L'ACTUALITE-->
